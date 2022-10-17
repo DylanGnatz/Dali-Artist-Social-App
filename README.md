@@ -27,3 +27,6 @@ Our SaaS solution stands out as different from the market for a number of reason
 By combining features similar to those that exist on LinkedIn, Instagram, Pinterest, and Tinder, we aim to create a new networking tool that sits at the crossroads of professional and social collaboration. With in-house features that offer users a wide range of possible actions, our product is different from other existing services in its aim to become the one and only tool artists really need to branch out into their local environments.
 
 This ties in with our next point - the lack of true market comps. While each one of the previously mentioned apps offers features similar to ours, the combination and target audience is what really separates our service. Dali offers a unique artistic focus and tailored user experience that other apps simply don’t offer.
+
+## ER Diagram
+![ERD](ERD/dali_ERD.png?raw=true "ERD")
