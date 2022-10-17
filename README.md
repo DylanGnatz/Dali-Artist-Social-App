@@ -1,5 +1,5 @@
 # Dali-Artist-Social-App
-![Dali Logo](assets/logo.jpg?raw=true "Dali Logo")
+![Dali Logo](assets/logo.png?raw=true "Dali Logo")
 ## Dali: The New Movement
 
 Team members- Alexis Gadonneix (ag4625), Dylan Gnatz (dlg2178), Shehan Panditharatne (wap2124), Aditya Khera (ak4604)
