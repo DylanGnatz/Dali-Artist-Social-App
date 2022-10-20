@@ -31,4 +31,4 @@ This ties in with our next point - the lack of true market comps. While each one
 
 ## ER Diagram
 
-![ERD](ERD/dali_ERD.png?raw=true "ERD")
+![ERD](other-project-files/ERD/dali_ERD.png?raw=true "ERD")
