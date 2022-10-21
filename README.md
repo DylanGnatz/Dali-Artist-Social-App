@@ -30,5 +30,5 @@ By combining features similar to those that exist on LinkedIn, Instagram, Pinter
 This ties in with our next point - the lack of true market comps. While each one of the previously mentioned apps offers features similar to ours, the combination and target audience is what really separates our service. Dali offers a unique artistic focus and tailored user experience that other apps simply don’t offer.
 
 ## ER Diagram
-
+Link: https://drive.google.com/file/d/1x7PFpq0KZWwdeTumDfEK5MU70336HhCk/view?usp=sharing
 ![ERD](other-project-files/ERD/dali_ERD.png?raw=true "ERD")
