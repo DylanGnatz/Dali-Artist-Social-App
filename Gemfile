@@ -75,3 +75,5 @@ group :test do
 end
 
 gem 'devise'
+
+gem 'simplecov', require: false, group: :test
