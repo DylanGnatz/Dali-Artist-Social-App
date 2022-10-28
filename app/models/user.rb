@@ -9,4 +9,5 @@ class User < ApplicationRecord
     self.build_profile(username: self.username)
   end
   accepts_nested_attributes_for :profile
+  validates :username, length: { in: 2..80 }
 end
