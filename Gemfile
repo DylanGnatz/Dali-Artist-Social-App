@@ -75,6 +75,7 @@ group :test do
 end
 
 gem 'devise'
+gem 'devise-tailwinded'
 
 gem 'simplecov', require: false, group: :test
 
