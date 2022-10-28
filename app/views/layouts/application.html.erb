@@ -12,13 +12,15 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
+    <main class="container mx-auto mt-28 px-5 flex flex-col">
+      <div class="w-full max-w-xs mx-auto align-middle">
+        <% if notice %>
+          <p class="w-full mx-auto align-middle bg-green-400"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="w-full mx-auto align-middle bg-red-400"><%= alert %></p>
+        <% end %>
+      </div>
       <%= yield %>
     </main>
   </body>
