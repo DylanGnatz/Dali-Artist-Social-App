@@ -1,0 +1,23 @@
+<div class="flex flex-col">
+  <h1 class="font-bold text-4xl">Edit profile</h1>
+  <br/>
+  <div>
+    <%= @profile.username %>
+  </div>
+  <br/>
+  <%= form_tag profiles_update_path(@profile), :method => :put do %>
+  <div>
+  <%= label :profile, :bio, 'Bio' %>
+  <%= text_area :profile, 'bio' %>
+  </div>
+  <div>
+  <%= label :profile, :date_of_birth, 'Birth date'  %>
+  <%= date_select :profile, :date_of_birth, start_year: 1900, end_year: Date.current.year, include_blank: true %>
+  </div>
+  <br/>
+  <div class="flex flex-row">
+    <%= submit_tag 'Update Profile Info', class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+    <%= link_to 'Cancel', profiles_index_path, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"%>
+  </div>
+<% end %>
+</div>
