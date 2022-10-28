@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :profile
+  before_create do
+    self.build_profile(username: self.username)
+  end
+  accepts_nested_attributes_for :profile
 end

@@ -13,6 +13,9 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 flex flex-col">
+    <% if current_user %>
+      <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
+    <% end %>
       <div class="w-full mx-auto align-middle">
         <% if notice %>
           <p class="w-full mx-auto align-middle bg-green-400"><%= notice %></p>
