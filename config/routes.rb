@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   put 'profiles/update'
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :chats
+  resources :chats_messages
+  resources :friends
 
   devise_scope :user do
     authenticated :user do

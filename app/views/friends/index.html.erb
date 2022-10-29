@@ -1,0 +1,14 @@
+<h2>Friends</h2>
+
+<div class="column">
+    <% @friends.each do |frndObj| %>
+        <div class="row">
+            <span>
+                <%= frndObj[:username] %>
+            </span>
+            <span>
+                <%= button_to 'Chat', {:controller => "chats", :action => "create", :username => frndObj[:username]} , {:method=>:post, :form_class => "btn btn-primary"} %>          
+            </span>
+        </div>
+    <% end %>
+</div>
