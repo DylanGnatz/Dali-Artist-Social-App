@@ -1,0 +1,21 @@
+<h2>Chat</h2>
+
+<div class='column'>
+    <% @messages.each do |message| %>
+        <div>
+            <span>
+            <%= message[:msg] %>
+            </span>       
+            <span>
+            (<%= message[:sender] %>)      
+            </span>
+        </div>
+    <% end %>
+</div>
+
+<div class='row'>
+    <%= form_tag chats_messages_path(profile_id: @profile.id, chat_id: @chat.id), :class => 'form' do %>
+        <%= text_field :chats_message, :msg, :class => 'form-control' %>
+        <%= submit_tag 'Send', :class => 'btn btn-primary' %>
+    <% end %>
+</div>
