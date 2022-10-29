@@ -36,5 +36,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_205633) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+  
+  create_table "users", force: :cascade do |t|
+    t.bigint "swiper_id", null: false
+    t.bigint "swiped_id", null: false
+    t.datetime "swipe_time", null: false
+    t.boolean "interested", null: false
+  end
 
 end
