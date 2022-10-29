@@ -5,7 +5,7 @@ class SwipesController < ApplicationController
     else
       redirect_to new_user_session_path, notice: 'You are not logged in.'
     end
-    @potential_match = Profile.find(Profile.ids.sample)
+    @match_list = 
   end
 
   def create

@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :swipe
+  has_many :match
   before_create do
     self.build_profile(username: self.username)
   end

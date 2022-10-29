@@ -44,4 +44,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_205633) do
     t.boolean "interested", null: false
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.bigint "user_1", null: false
+    t.bigint "user_2", null: false
+    t.datetime "match_time", null: false
+  end
+
 end
