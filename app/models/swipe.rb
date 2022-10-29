@@ -1,2 +1,3 @@
-class Swipe
+class Swipe < ApplicationRecord
+  belongs_to :user
 end
