@@ -1,0 +1,3 @@
+class MatchesController < ApplicationController
+
+end
