@@ -1,9 +1,9 @@
 class SwipesController < ApplicationController
-  def index:
-    @profiles = Profile.all()
+  def index
+    @potential_match = Profile.find(Profile.ids.sample)
   end
 
-  def new_swipe:
+  def create
     @swipe = Swipe.create!(swipe_params)
   end
 end
