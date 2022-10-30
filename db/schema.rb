@@ -70,19 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_163557) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "swipes", force: :cascade do |t|
-    t.bigint "swiper_id", null: false
-    t.bigint "swiped_id", null: false
-    t.datetime "swipe_time", null: false
-    t.boolean "interested", null: false
-  end
-
-  create_table "matches", force: :cascade do |t|
-    t.bigint "user_1", null: false
-    t.bigint "user_2", null: false
-    t.datetime "match_time", null: false
-  end
-
   add_foreign_key "chats_messages", "chats"
   add_foreign_key "chats_messages", "profiles"
   add_foreign_key "chats_profiles", "chats"

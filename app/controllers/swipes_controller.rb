@@ -1,17 +1,19 @@
 class SwipesController < ApplicationController
+  before_action :authenticate_user!
   def index
-    if current_user
-      @user = current_user
-    else
-      redirect_to new_user_session_path, notice: 'You are not logged in.'
-    end
-    @match_list = 
+    #@profile = Profile.find_by(user_id: current_user.id)
+    #@potential_match = Profile.where.not(id: current_user.id).order('RANDOM()').limit(1)
+    @potential_match = Profile.where.not(id: current_user.id).order("RANDOM()").first
+    print 'match id'
+    print @potential_match.id
   end
 
   def create
-    user_id = @user.id
-    match_id = @potential_match.id
+    profile_id = params[:profile_id]
+    interested = params[:interested]
 
-    @swipe = Swipe.create!()
+    @swipe = Swipe.create!(current_user.id, profile_id, Time.now(), interested)
+    redirect_to swipes_path
+
   end
 end
