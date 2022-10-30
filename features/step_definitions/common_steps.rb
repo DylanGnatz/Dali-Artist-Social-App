@@ -14,14 +14,6 @@ When /^I go to the friends page$/ do
   visit "/friends"
 end
 
-Then /^I should be on the log in page$/ do
-  current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should == "/users/sign_in"
-  else
-    assert_equal "/users/sign_in", current_path
-  end
-end
 Then /^I should be on the friends page$/ do
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -57,4 +49,8 @@ end
 
 When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
+end
+
+When /^I follow "([^"]*)"$/ do |link|
+  click_link(link)
 end
