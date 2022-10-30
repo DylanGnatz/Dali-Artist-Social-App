@@ -1,4 +1,5 @@
 Given /the following users exist/ do |users_table|
+  User.delete_all
   users_table.hashes.each do |user|
     User.create user
   end
@@ -14,20 +15,12 @@ end
 
 Then /^I should be on the log in page$/ do
   current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should == "/users/sign_in"
-  else
-    assert_equal "/users/sign_in", current_path
-  end
+  current_path.should == "/users/sign_in"
 end
 
 Then /^I should be on the registration page$/ do
   current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should == "/users/sign_up"
-  else
-    assert_equal "/users/sign_up", current_path
-  end
+  current_path.should == "/users/sign_up"
 end
 
 Then /^I should successfully sign in$/ do

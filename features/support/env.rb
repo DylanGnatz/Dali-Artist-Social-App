@@ -4,6 +4,12 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+require 'simplecov'
+SimpleCov.start do
+  add_filter %r{^/config/initializers/}
+  add_filter %r{devise_controller.rb}
+end
+
 require 'cucumber/rails'
 
 # frozen_string_literal: true
