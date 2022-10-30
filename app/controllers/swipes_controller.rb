@@ -2,8 +2,12 @@ class SwipesController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
   def index
-
-    @potential_match = Profile.where.not(id: current_user.id).order("RANDOM()").first
+    @profile = Profile.find_by(user_id: current_user.id)
+    @already_swiped = Swipe.where(profile_id: @profile.id).pluck(:swiped_id)
+    @already_swiped.push(@profile.id)
+    @potential_match = Profile.where.not(id: @already_swiped).order("RANDOM()").first
+    puts 'match'
+    puts @potential_match
   end
 
   def create

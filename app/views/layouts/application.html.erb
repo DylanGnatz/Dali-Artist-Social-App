@@ -16,6 +16,7 @@
     <main class="container mx-auto mt-28 px-5 flex flex-col">
     <% if current_user %>
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline ml-auto"  %>
+        
     <% end %>
       <div class="w-full mx-auto align-middle">
         <% if notice %>
