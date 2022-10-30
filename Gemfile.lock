@@ -108,7 +108,21 @@ GEM
     cucumber-html-formatter (19.2.0)
       cucumber-messages (~> 18.0, >= 18.0.0)
     cucumber-messages (18.0.0)
+    cucumber-rails (2.6.1)
+      capybara (>= 2.18, < 4)
+      cucumber (>= 3.2, < 9)
+      mime-types (~> 3.3)
+      nokogiri (~> 1.10)
+      railties (>= 5.0, < 8)
+      rexml (~> 3.0)
+      webrick (~> 1.7)
     cucumber-tag-expressions (4.1.0)
+    database_cleaner (2.0.1)
+      database_cleaner-active_record (~> 2.0.0)
+    database_cleaner-active_record (2.0.1)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     debug (1.6.2)
       irb (>= 1.3.6)
       reline (>= 0.3.1)
@@ -273,6 +287,7 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0)
+    webrick (1.7.0)
     websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -287,7 +302,8 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
-  cucumber
+  cucumber-rails
+  database_cleaner
   debug
   devise
   devise-tailwinded
