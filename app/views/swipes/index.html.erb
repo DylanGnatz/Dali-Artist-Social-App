@@ -8,6 +8,6 @@
   </div>
 
   <br>
-  <%= link_to  'Interested', swipes_path(:interested => true, :profile_id => @potential_match.id), :method => :post, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
-  <%= link_to  'Not Interested', swipes_path(:interested => false, :profile_id => @potential_match.id), :method => :post, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
+  <%= button_to  'Interested', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
+  <%= button_to  'Not Interested', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
 </div>

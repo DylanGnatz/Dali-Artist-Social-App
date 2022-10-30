@@ -1,19 +1,37 @@
 class SwipesController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
   def index
-    #@profile = Profile.find_by(user_id: current_user.id)
-    #@potential_match = Profile.where.not(id: current_user.id).order('RANDOM()').limit(1)
+
     @potential_match = Profile.where.not(id: current_user.id).order("RANDOM()").first
-    print 'match id'
-    print @potential_match.id
   end
 
   def create
-    profile_id = params[:profile_id]
+    swiped_id = params[:profile_id]
     interested = params[:interested]
+    @profile = Profile.find_by(user_id: current_user.id)
+    @swipe = Swipe.create!(:profile_id => @profile.id, :swiped_id => swiped_id, :interested => interested, :swipe_time => Time.now())
+    @check_match = match(@profile.id, swiped_id)
 
-    @swipe = Swipe.create!(current_user.id, profile_id, Time.now(), interested)
+    if @check_match
+      flash[:notice] = "You just matched with '#{params[:username]}!'"
+    end
     redirect_to swipes_path
 
+  end
+
+  def match(swiper_id, swiped_id)
+
+    swipe_1 = Swipe.find_by(profile_id: swiper_id, swiped_id: swiped_id)
+    swipe_2 = Swipe.find_by(profile_id: swiped_id, swiped_id: swiper_id)
+    if swipe_1 and swipe_2
+
+      if swipe_1.interested and swipe_2.interested
+        Friend.create(profile_id: swiper_id,friend_id: swiped_id, created_at: Time.now(), updated_at: Time.now())
+        Friend.create(profile_id: swiped_id,friend_id: swiper_id, created_at: Time.now(), updated_at: Time.now())
+        return true
+      end
+    end
+    return false
   end
 end
