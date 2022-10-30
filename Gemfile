@@ -73,6 +73,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
 end
 
 gem 'devise'
@@ -80,5 +82,4 @@ gem 'devise-tailwinded'
 
 gem 'simplecov', require: false, group: :test
 
-gem 'cucumber'
 gem "rspec-rails", group: [:development, :test]
