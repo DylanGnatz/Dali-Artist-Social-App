@@ -5,8 +5,8 @@ Feature: Registered Dali users can log in
 
   Background: users in database
     Given the following users exist:
-      | email          | username | password |
-      | dali@gmail.com | dali     |   123456 |
+      | email          | username | password | password_confirmation |
+      | dali@gmail.com | dali     | 123456   | 123456                |
 
   Scenario: Land on login page
     When I go to the home page
@@ -16,7 +16,7 @@ Feature: Registered Dali users can log in
     When I go to the friends page
     Then I should be on the log in page
 
-  Scenario: Input existig credentials
+  Scenario: Input existing credentials
     When I go to the home page
     And I log in with "dali@gmail.com" and "123456"
     Then I should successfully sign in
