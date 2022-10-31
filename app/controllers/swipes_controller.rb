@@ -16,7 +16,7 @@ class SwipesController < ApplicationController
     @check_match = match(@profile.id, swiped_id)
 
     if @check_match
-      flash[:notice] = "You just matched with '#{params[:username]}!'"
+      flash[:notice] = "You just matched with '#{params[:username]}'!"
     end
     redirect_to swipes_path
 

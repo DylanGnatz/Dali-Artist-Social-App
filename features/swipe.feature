@@ -43,7 +43,21 @@ Feature:
     And I log in with "dali@gmail.com" and "123456"
     And I follow "Swipe"
     And I click the "Interested" button
-    Then I should see "You've run out of profiles in your area!"
-    And I should not see "dali"
+    And I sign out
+    And I log in with "picasso@gmail.com" and "123456"
+    And I follow "Swipe"
+    And I click the "Interested" button
+    Then I should see "You just matched with 'dali'!"
+
+  Scenario: Do not match when a user selects not interested
+    When I go to the home page
+    And I log in with "dali@gmail.com" and "123456"
+    And I follow "Swipe"
+    And I click the "Interested" button
+    And I sign out
+    And I log in with "picasso@gmail.com" and "123456"
+    And I follow "Swipe"
+    And I click the "Not Interested" button
+    Then I should not see "You just matched with 'dali'!"
 
 

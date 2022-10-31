@@ -67,3 +67,7 @@ end
 When /^I click the "([^"]*)" button$/ do |button|
   click_button(button)
 end
+
+When /^I sign out$/ do
+  visit(destroy_user_session_path)
+end
