@@ -7,6 +7,15 @@ When /^I go to the friends page$/ do
   visit "/friends"
 end
 
+Then /^I should be on the swipes page$/ do
+  current_path = URI.parse(current_url).path
+  if current_path.respond_to? :should
+    current_path.should == "/swipes"
+  else
+    assert_equal "/swipes", current_path
+  end
+end
+
 Then /^I should be on the friends page$/ do
   current_path = URI.parse(current_url).path
   current_path.should == "/friends"
@@ -26,4 +35,12 @@ end
 
 When /^I follow "([^"]*)"$/ do |link|
   click_link(link)
+end
+
+When /^I click the "([^"]*)" button$/ do |button|
+  click_button(button)
+end
+
+When /^I sign out$/ do
+  visit(destroy_user_session_path)
 end
