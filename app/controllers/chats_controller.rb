@@ -15,13 +15,8 @@ class ChatsController < ApplicationController
 
         @messages = []
         @chat.chats_messages.each do |chat_message|
-            @messages.push({ msg: chat_message[:msg], from_profile: @profile.id == chat_message[:profile_id], sender: chat_message.profile.username })
+            @messages.push({ msg: chat_message[:msg], from_profile: @profile.id == chat_message.profile.id, sender: chat_message.profile.username })
         end
-    end
-
-    def friends
-        profile = Profile.find_by(user_id: current_user.id)
-        @friends = profile.all_friends
     end
 
     def create
