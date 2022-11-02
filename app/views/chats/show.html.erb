@@ -7,15 +7,13 @@
             <%= message[:msg] %>
             </span>       
             <span>
-            (<%= message[:sender] %>)      
+            (<%= message[:from_profile] ? 'Me' : message[:sender] %>)      
             </span>
         </div>
     <% end %>
 </div>
 
-<div class='row'>
-    <%= form_tag chats_messages_path(profile_id: @profile.id, chat_id: @chat.id), :class => 'form' do %>
-        <%= text_field :chats_message, :msg, :class => 'form-control' %>
-        <%= submit_tag 'Send', :class => 'btn btn-primary' %>
-    <% end %>
-</div>
+<%= form_tag chats_messages_path(chat_id: @chat.id), :class => 'form-horizontal' do %>
+    <%= text_field :chats_message, :msg, :class => 'form-control' %>
+    <%= submit_tag 'Send', :class => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+<% end %>

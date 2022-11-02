@@ -1,12 +1,12 @@
-<h1>Chats</h1>
+<h1>Chat</h1>
 
-<div class="grid grid-cols-2">
-    <%= link_to "New Chat", friends_path, :class => 'btn btn-secondary'%>
+<div>
+    <%= link_to "New Chat", friends_path, :class => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'%>
 
     <div><h3>Current Chats</h3></div>
     <% @chats.each do |chat| %>
         <div>
-            <%= link_to chat[:name], chat_path(chat[:id]) %>
+            <%= link_to chat[:name], chat_path(chat[:id]), :class => 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4' %>
         </div>
     <% end %>
 </div>
