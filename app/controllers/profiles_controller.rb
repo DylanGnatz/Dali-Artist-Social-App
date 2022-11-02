@@ -14,10 +14,15 @@ class ProfilesController < ApplicationController
     redirect_to profiles_index_path
   end
 
+  def show
+    id = params[:profile]
+    @profile = Profile.find_by(user_id: current_user.id)
+  end
+
   private
 
   def profile_params
   puts params
-    params.require(:profile).permit(:bio, :username, :date_of_birth)
+    params.require(:profile).permit(:bio, :username, :date_of_birth, :art_link)
   end
 end
