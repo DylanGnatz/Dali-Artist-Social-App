@@ -2,6 +2,7 @@ class Profile < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :chats, through: :chats_profiles
   has_many :friends
+  has_many :artwork
 
   def all_friends
     all = []
@@ -13,4 +14,13 @@ class Profile < ApplicationRecord
     end
     all
   end
+
+  #how do i get a list of all the peices of art that a profile can have
+  #  def all_artwork
+  #    all_art = []
+    #Profile.find(id).artwork.each do |obj|
+    #  all_artwork.push(Profile.find(obj.art))
+   # end
+  #end
+
 end

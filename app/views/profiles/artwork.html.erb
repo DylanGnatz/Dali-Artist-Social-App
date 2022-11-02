@@ -1,0 +1,34 @@
+<div class="flex flex-col">
+
+    <h1>Upload New Art</h1>
+    <br/>
+    <div>
+      <%= @profile.username %>
+    </div>
+    <br/>
+    
+    <%= form_tag profiles_index_path, :method => :put do%>
+    <div>
+    <%= label :artwork, :art_link, 'Link' %>
+    <%= text_area :artwork, 'art_link' %>
+    </div>
+    <div>
+    <%= label :artwork, :title, 'Title' %>
+    <%= text_area :artwork, 'title' %>
+    </div>
+    <div>
+    <%= label :artwork, :description, 'Description' %>
+    <%= text_area :artwork, 'description' %>
+    </div>
+    <div>
+    <%= label :artwork, :type, 'Type' %>
+    <%= select :artwork, 'type',  ['Painting','Video','Poem','Prose','Multimedia', "Other"] %>
+    </div>
+    <br/>
+    <div class="flex flex-row">
+    <%= submit_tag 'Add Art', class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+    <%= link_to 'Cancel', profiles_index_path, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"%>
+    </div>
+  
+    <% end %>
+</div>

@@ -1,14 +1,18 @@
 Feature: Expand profile view and showcase another users profile
 
-As an artist using Dali,
-I want to be able to expand user profile 
-So I can see another artist’s portfolio and information
+  As an artist using Dali,
+  I want to be able to expand user profile 
+  So I can see the portfolio and information
 
-Background: I  see Picasso's page
+  Background: users in database
+  Given the following users exist:
+    | email             | username | password |  bio |
+    | dali@gmail.com    | dali     |   123456 |  big fan of this app |
 
-Scenario: checking view profile for a user
-  When I go to the view page for "Picasso"
-  Then the bio should exist?
-  Then the tag of "Picasso" should be "Painter" "Impressionist"
-  Then the join date of "Picasso" should GET JOIN DATE 
-  Then the artwork should exist?
+  Scenario: Land on view page
+    When I go to the home page
+    And I log in with "dali@gmail.com" and "123456"
+    Then I should successfully sign in
+    When I click the "View Public Profile" button
+    Then I should see "dali"
+    And I should see "big fan of this app"

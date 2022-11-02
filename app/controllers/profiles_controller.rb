@@ -21,10 +21,14 @@ class ProfilesController < ApplicationController
     puts(id)
   end
 
+  def artwork 
+    @profile = Profile.find_by(user_id: current_user.id)
+  end
+
   private
 
   def profile_params
   puts params
-    params.require(:profile).permit(:bio, :username, :date_of_birth, :art_link)
+    params.require(:profile).permit(:bio, :username, :date_of_birth)
   end
 end
