@@ -8,9 +8,9 @@ class Profile < ApplicationRecord
     Profile.find(id).friends.each do |obj|
       all.push(Profile.find(obj.friend_id))
     end
-    Friend.where("friend_id = ?", id).each do |frndObj|
-      all.push(frndObj.profile)
-    end
+    # Friend.where("friend_id = ?", id).each do |frndObj|
+    #   all.push(frndObj.profile)
+    # end
     all
   end
 end
