@@ -2,14 +2,16 @@
 
 <div class="column">
     <% @friends.each do |frndObj| %>
-        <div class="row">
-            <span>
+        <div class="grid grid-rows-3 grid-flow-col gap-4">
+            <div class="row-span-3">
                 <%= frndObj[:username] %>
-            </span>
-            <span>
-                <%= button_to 'Chat', {:controller => "chats", :action => "create", :username => frndObj[:username]} , {:method=>:post, :form_class => "btn btn-primary"} %>
+            </div>
+            <div class="row-span-3">
+                <%= button_to 'Chat', {:controller => "chats", :action => "create", :username => frndObj[:username]} , {:method=>:post, :form_class => "bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline", :id => frndObj[:username] } %>
+            </div>
+            <div class="row-span-3">
                 <%= button_to  'View Profile', profiles_path(frndObj[:id]), :method => :get, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
-            </span>
+            </div>
         </div>
     </div>
 <% end %>
