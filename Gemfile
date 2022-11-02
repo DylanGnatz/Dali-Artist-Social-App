@@ -75,7 +75,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem 'cucumber-rails', require: false
-  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
 end
 
 gem 'devise'
