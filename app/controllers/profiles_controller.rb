@@ -15,8 +15,10 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    id = params[:profile]
-    @profile = Profile.find_by(user_id: current_user.id)
+    id = params[:id]
+    @profile = Profile.find_by(id: id)
+    puts("calling show___________________________>>>>>>>")
+    puts(id)
   end
 
   private
