@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'profiles/index'
   get 'profiles/edit'
+  get 'profiles/artwork'
   put 'profiles/update'
   get '/profiles/:id', to: 'profiles#show', as: 'profiles'
   devise_for :users, :controllers => { registrations: 'users/registrations' }
