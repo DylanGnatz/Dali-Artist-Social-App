@@ -5,7 +5,9 @@ describe SwipesController do
 
   before :each do
     @profile1 = @user.profile
-    @profile2 = create(:profile)
+
+    @profile2 = create(:user).profile
+    @profile3 = create(:user).profile
     
   end
   describe 'get index' do
