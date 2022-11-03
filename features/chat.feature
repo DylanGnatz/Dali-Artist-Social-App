@@ -21,8 +21,7 @@ Feature: Chat with other users once a match has been made
     And I log in with "dali@gmail.com" and "123456"
     Then I should successfully sign in
     And I follow "Chat"
-    Then I should see "Chat"
-    And I should see "Current Chats"
+    Then I should see "Chats"
 
   Scenario: View my friends
     When I go to the home page
