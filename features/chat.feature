@@ -106,3 +106,14 @@ Feature: Chat with other users once a match has been made
     And I click the "Send" button
     Then I should see "Yo Picasso suppp"
 
+  Scenario: Sending an empty message should give an error
+    When I go to the home page
+    And I log in with "dali@gmail.com" and "123456"
+    Then I should successfully sign in
+    When I follow "Chat"
+    And I follow "New Chat"
+    When I click the button with id "picasso"
+    Then I should be on the chat show page
+    When I fill in "chats_message_msg" with ""
+    And I click the "Send" button
+    Then I should see "The message was empty!"

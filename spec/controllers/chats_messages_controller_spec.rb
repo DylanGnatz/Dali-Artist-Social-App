@@ -26,4 +26,14 @@ describe ChatsMessagesController do
         post :create, params: { chat_id: @chat1.id, chats_message: { msg: 'Yo wasssup' } }
         expect(response).to redirect_to(chat_path(@chat1.id))
     end
+
+    it 'post create with empty message shows an alert' do
+        allow(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+        msg1 = create(:chats_message, profile: @profile1, msg: "", chat:@chat1)
+        allow(ChatsMessage).to receive(:create!)
+            .with(chat_id: @chat1.id.to_s, profile_id: @profile1.id, msg: '').and_return(msg1)
+        post :create, params: { chat_id: @chat1.id, chats_message: { msg: '' } }
+        expect(response).to redirect_to(chat_path(@chat1.id))
+        expect(flash[:alert]).to be_present
+    end
 end
