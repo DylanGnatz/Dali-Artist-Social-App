@@ -9,9 +9,6 @@ Feature:
       | dali@gmail.com    | dali     |   123456 |
       | picasso@gmail.com | picasso  |   123456 |
 
-
-
-
   Scenario: Navigate to swipes page
     When I go to the home page
     And I log in with "dali@gmail.com" and "123456"
