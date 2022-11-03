@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_30_155234) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_03_005517) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artwork", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.boolean "onPortfolio"
+    t.datetime "addedDate", null: false
+    t.string "type", limit: 100
+    t.string "title", limit: 100
+    t.string "link", limit: 100
+    t.string "description", limit: 2000
+    t.boolean "isPrivate"
+    t.index ["profile_id"], name: "index_artwork_on_profile_id"
+  end
 
   create_table "chats", force: :cascade do |t|
     t.datetime "last_message"
@@ -78,18 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_155234) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "artwork", force: :cascade do |t|
-    t.bigint "profile_id", null: false
-    t.boolean "onPortfolio"
-    t.datetime "addedDate", null: false
-    t.string "type", limit: 100
-    t.string "title", limit: 100
-    t.string "link", limit: 100
-    t.string "description", limit: 2000
-    t.boolean "isPrivate"
-    t.index ["user_id"], name: "index_profiles_on_user_id"
-  end
-
+  add_foreign_key "artwork", "profiles"
   add_foreign_key "chats_messages", "chats"
   add_foreign_key "chats_messages", "profiles"
   add_foreign_key "chats_profiles", "chats"
