@@ -25,7 +25,7 @@ describe SwipesController do
       @swipe = Swipe.create(profile_id: @profile1.id, swiped_id: @profile2.id, interested: true, swipe_time: Time.now())
       expect(Swipe).to receive(:create!).and_return(@swipe)
 
-
+      post :create, params: { profile_id: @profile1.id, interested: true }
     end
   end
   describe "check match" do
@@ -34,7 +34,7 @@ describe SwipesController do
       @swipe.should be_an_instance_of Swipe
       @swipe2 = Swipe.create(profile_id: @profile2.id, swiped_id: @profile1.id, interested: true, swipe_time: Time.now())
       @swipe2.should be_an_instance_of Swipe
-      @matched = SwipesController.match(@profile1.id, @profile2.id)
+      @matched = Swipe.match(@profile1.id, @profile2.id)
       expect(@matched == true)
     end
   end
