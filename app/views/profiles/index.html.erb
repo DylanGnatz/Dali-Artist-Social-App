@@ -1,14 +1,18 @@
 <div>
-  <h1 class="font-bold text-4xl">Profile</h1>
-  <div>
-    <p>Username: <%= @profile.username %> </p>
-  </div>
-  <div>
-    <p>Bio: <%= @profile.bio %> </p>
-  </div>
+  <h1 class="font-bold text-8xl"><%= @profile.username %></h1>
 
-  <br>
-  <%= link_to  'Edit Profile', profiles_edit_path, :method => :get, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
-  <%= link_to  'Add Artwork', profiles_artwork_path, :method => :get, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
-  <%= link_to  'View Public Profile', profiles_path(@profile.id), :method => :get, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
+  <br/>
+  <br/>
+  <br/>
+
+  <div class="flex gap-x-3 items-stretch">
+    <div class="bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+      <%= link_to  'View Public Profile', profiles_path(@profile.id), :method => :get %>
+    </div>
+    <div class="bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+      <%= link_to  'Edit Profile', profiles_edit_path, :method => :get %>
+    </div>
+    <div class="bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+      <%= link_to  'Add Artwork', profiles_artwork_path, :method => :get %>
+    </div>
 </div>

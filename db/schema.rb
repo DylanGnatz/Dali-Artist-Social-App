@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_005517) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "artwork", force: :cascade do |t|
+  create_table "artworks", force: :cascade do |t|
     t.bigint "profile_id", null: false
     t.boolean "onPortfolio"
     t.datetime "addedDate", null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_005517) do
     t.string "link", limit: 100
     t.string "description", limit: 2000
     t.boolean "isPrivate"
-    t.index ["profile_id"], name: "index_artwork_on_profile_id"
+    t.index ["profile_id"], name: "index_artworks_on_profile_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_005517) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "artwork", "profiles"
+  add_foreign_key "artworks", "profiles"
   add_foreign_key "chats_messages", "chats"
   add_foreign_key "chats_messages", "profiles"
   add_foreign_key "chats_profiles", "chats"

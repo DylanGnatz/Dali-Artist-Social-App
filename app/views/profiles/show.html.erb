@@ -1,18 +1,30 @@
 <div>
   <% if @profile %>
-  <h1 class="font-bold text-4xl"> <%= @profile.username %> </h1>
+    <h1 class="font-bold text-8xl"> <%= @profile.username %> </h1>
+
     <br/>
-    <div>
-      <h3>About <%= @profile.username %></h3>
+    <br/>
+
+    <div class="flex flex-col items-stretch">
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl">About <%= @profile.username %></h3>
+        <br/>
+        <p><%= @profile.bio %></p>
+      </div>
+      <%# <br/>
+      <h3>Tags go here</h3> %>
       <br/>
-      <% @profile.bio %>
       <br/>
-      <h3>Tags go here</h3>
-      <br/>
-      <h3>art links here</h3>
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl"><%= @profile.username %>'s Art</h3>
+        <br/>
+        <% @profile.artworks.each do |art| %>
+          <p><%= art.title%> </p>
+        <% end%>
+      </div>
     </div>
   <% else %>
-  <h1 class="font-bold text-4xl">User does not exist!</h1>
+    <h1 class="font-bold text-4xl">User does not exist!</h1>
   <% end %>
 </div>
 

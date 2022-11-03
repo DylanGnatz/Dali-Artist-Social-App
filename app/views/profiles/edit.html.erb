@@ -1,23 +1,36 @@
-<div class="flex flex-col">
-  <h1 class="font-bold text-4xl">Edit profile</h1>
-  <br/>
-  <div>
-    <%= @profile.username %>
-  </div>
-  <br/>
-  <%= form_tag profiles_update_path(@profile), :method => :put do %>
-  <div>
-  <%= label :profile, :bio, 'Bio' %>
-  <%= text_area :profile, 'bio' %>
-  </div>
-  <div>
-  <%= label :profile, :date_of_birth, 'Birth date'  %>
-  <%= date_select :profile, :date_of_birth, start_year: 1900, end_year: Date.current.year, include_blank: true %>
-  </div>
-  <br/>
-  <div class="flex flex-row">
-    <%= submit_tag 'Update Profile Info', class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
-    <%= link_to 'Cancel', profiles_index_path, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"%>
-  </div>
-<% end %>
+<div>
+  <% if @profile %>
+    <h1 class="font-bold text-8xl"> Edit Profile </h1>
+
+    <br/>
+    <br/>
+
+    <h3 class="font-bold text-4xl"><%= @profile.username %></h3>
+    
+    <br/>
+
+    <%= form_tag profiles_update_path(@profile), :method => :put do %>
+      <div class="flex flex-col items-stretch gap-2">
+          <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
+            <h3 class="font-bold text-4xl">Edit Bio</h3>
+            <br/>
+            <%= label :profile, :bio, 'Bio', class: "invisible absolute" %>
+            <%= text_area :profile, 'bio' %>
+          </div>
+          <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+            <h3 class="font-bold text-4xl">Edit Date of Birth</h3>
+            <br/>
+            <%= label :profile, :date_of_birth, 'Birth date', class: "invisible absolute"  %>
+            <%= date_select :profile, :date_of_birth, start_year: 1900, end_year: Date.current.year, include_blank: true %>
+          </div>
+
+          <div class="flex flex-row">
+            <%= submit_tag 'Update Profile Info', class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+            <%= link_to 'Cancel', profiles_index_path, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"%>
+          </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h1 class="font-bold text-4xl">User does not exist!</h1>
+  <% end %>
 </div>

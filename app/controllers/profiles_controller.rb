@@ -16,9 +16,9 @@ class ProfilesController < ApplicationController
 
   def show
     id = params[:id]
-    @profile = Profile.find_by(id: id)
-    puts("calling show___________________________>>>>>>>")
-    puts(id)
+    @profile = Profile.find(id)
+    # puts("calling show___________________________>>>>>>>")
+    # puts(id)
   end
 
   def artwork 
