@@ -15,10 +15,10 @@ describe ChatsController do
     
     describe 'all_friends' do
         it 'right number of friends' do
-            expect(@profile1.friends.length).to eq(1)
-            expect(@profile2.friends.length).to eq(2)
-            expect(@profile3.friends.length).to eq(1)
-            expect(@profile4.friends.length).to eq(0)
+            expect(@profile1.all_friends.length).to eq(1)
+            expect(@profile2.all_friends.length).to eq(2)
+            expect(@profile3.all_friends.length).to eq(1)
+            expect(@profile4.all_friends.length).to eq(0)
         end
     end
 end
