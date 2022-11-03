@@ -6,13 +6,12 @@ Feature: Expand profile view and showcase another users profile
 
   Background: users in database
   Given the following users exist:
-    | email             | username | password |  bio |
-    | dali@gmail.com    | dali     |   123456 |  big fan of this app |
+    | email             | username | password |
+    | dali@gmail.com    | dali     |   123456 |
 
   Scenario: Land on view page
     When I go to the home page
     And I log in with "dali@gmail.com" and "123456"
     Then I should successfully sign in
-    When I click the "View Public Profile" button
+    When I follow "View Public Profile"
     Then I should see "dali"
-    And I should see "big fan of this app"
