@@ -21,11 +21,12 @@ Feature:
     And I follow "Swipe"
     Then I should see "picasso"
 
-  Scenario: Exclude user's account from queue and notify when there are no more profiles
+  Scenario: Allow user to select interested or uninterested on other profiles.
     When I go to the home page
     And I log in with "dali@gmail.com" and "123456"
     And I follow "Swipe"
     Then I should see "Interested"
+    And I should see "Not Interested"
 
   Scenario: Exclude user's account from queue and notify when there are no more profiles
     When I go to the home page
