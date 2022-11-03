@@ -32,7 +32,7 @@ $ bin/rails db:seed
 ### Run
 
 ```
-$ bin/rails server
+$ ./bin/dev
 ```
 
 The application will start on http://localhost:3000/

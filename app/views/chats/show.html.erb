@@ -1,17 +1,37 @@
-<h2>Chat</h2>
+<h1 class="font-bold text-8xl"> Chat </h1>
 
-<div class='column'>
-    <% @messages.each do |message| %>
-        <div>
-            <span>
+<br/>
+<br/>
+
+<div class="flex flex-col gap-y-1">
+  <% @messages.each do |message| %>
+
+    <% if message[:from_profile] %>
+      <div class="ml-auto p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+          <div class="text-xl">
             <%= message[:msg] %>
-            </span>       
-            <span>
-            (<%= message[:from_profile] ? 'Me' : message[:sender] %>)      
-            </span>
-        </div>
+          </div>       
+          <div class="text-sm">
+            (Me)
+          </div>
+      </div>
     <% end %>
+    <% if !message[:from_profile] %>
+      <div class="mr-auto p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+          <div class="text-xl">
+            <%= message[:msg] %>
+          </div>       
+          <div class="text-sm">
+            (<%= message[:sender] %>)   
+          </div>
+      </div>
+    <% end%>
+
+  <% end %>
 </div>
+
+<br />
+<br />
 
 <%= form_tag chats_messages_path(chat_id: @chat.id), :class => 'form-horizontal' do %>
     <%= text_field :chats_message, :msg, :class => 'form-control' %>

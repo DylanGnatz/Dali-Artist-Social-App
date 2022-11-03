@@ -1,16 +1,29 @@
 <div>
   <% if @potential_match %>
-  <h1 class="font-bold text-4xl">Profile</h1>
-  <div>
-    <p>Username: <%= @potential_match.username %> </p>
-  </div>
-  <div>
-    <p>Bio: <%= @potential_match.bio %> </p>
+  <h1 class="font-bold text-8xl"><%= @potential_match.username %></h1>
+
+  <br/>
+  <br/>
+
+  <div class="flex flex-col items-stretch">
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+      <h3 class="font-bold text-4xl">About <%= @potential_match.username %></h3>
+      <br/>
+      <p><%= @potential_match.bio %></p>
+    </div>
   </div>
 
-  <br>
-  <%= button_to  'Interested', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class:"bg-green-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
-  <%= button_to  'Not Interested', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class:"bg-red-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
+  <br/>
+  <br/>
+
+  <div class="flex gap-x-3 items-stretch justify-between">
+    <div class="bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+      <%= button_to  'Not Interested', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post %>
+    </div>
+    <div class="bg-emerald-400 hover:bg-emerald-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+      <%= button_to  'Interested', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post %>
+    </div>
+  </div>
 
   <% else %>
     <h1 class="font-bold text-4xl">You've run out of profiles in your area! Try again later</h1>
