@@ -13,7 +13,10 @@ class SwipesController < ApplicationController
     interested = params[:interested]
     @profile = Profile.find_by(user_id: current_user.id)
     @swipe = Swipe.create!(:profile_id => @profile.id, :swiped_id => swiped_id, :interested => interested, :swipe_time => Time.now())
+
     @check_match = Swipe.match(@profile.id, swiped_id)
+
+
 
     if @check_match
       flash[:notice] = "You just matched with '#{params[:username]}'!"
@@ -21,5 +24,7 @@ class SwipesController < ApplicationController
     redirect_to swipes_path
 
   end
+
+
 
 end
