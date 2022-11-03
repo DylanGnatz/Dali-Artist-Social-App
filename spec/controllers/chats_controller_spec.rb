@@ -5,9 +5,9 @@ describe ChatsController do
 
     before :each do
         @profile1 = @user.profile
-        @profile2 = create(:profile)
-        @profile3 = create(:profile)
-        @profile4 = create(:profile)
+        @profile2 = create(:user).profile
+        @profile3 = create(:user).profile
+        @profile4 = create(:user).profile
 
         @chat1 = create(:chat, profiles: [@profile1, @profile2])
         @chat2 = create(:chat, profiles: [@profile1, @profile3])

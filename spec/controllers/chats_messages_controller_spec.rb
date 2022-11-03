@@ -5,7 +5,7 @@ describe ChatsMessagesController do
 
     before :each do
         @profile1 = @user.profile
-        @profile2 = create(:profile)
+        @profile2 = create(:user).profile
         @chat1 = create(:chat, profiles: [@profile1, @profile2])
         @profile1.chats = [@chat1]
     end
