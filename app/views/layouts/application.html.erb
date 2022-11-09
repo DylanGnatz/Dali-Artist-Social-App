@@ -12,7 +12,7 @@
   </head>
 
   <body class="bg-rose-100">
-    <main class="container mx-auto px-5 my-10 flex flex-col">
+    <main class="container mx-auto px-5 py-10 flex flex-col ">
       <div class="w-full mx-auto align-middle mb-3">
         <% if notice %>
           <p class="w-full mx-auto align-middle bg-green-400 p-2"><%= notice %></p>
@@ -21,30 +21,30 @@
           <p class="w-full mx-auto align-middle bg-red-400 p-2"><%= alert %></p>
         <% end %>
       </div>
-      <div class="flex">
-      <% if current_user %>
-        <div class="flex flex-col gap-y-3 items-stretch mr-10 ml-2">
-          <div class="text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
-            <%= link_to "Profile", profiles_index_path, :method => :get %>
+      <div class="flex items-start">
+        <% if current_user %>
+          <div class="flex flex-col gap-y-3 items-stretch mr-10 ml-2 sticky top-3">
+            <div class="text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+              <%= link_to "Profile", profiles_index_path, :method => :get %>
+            </div>
+            <div class="text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+              <%= link_to "Swipe", swipes_path, :method => :get %>
+            </div>
+            <div class="text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+              <%= link_to "Matches", friends_path, :method => :get %>
+            </div>
+            <div class="text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+              <%= link_to "Chat", chats_path, :method => :get %>
+            </div>
+            <div class="bg-red-600 hover:bg-red-700 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+            </div>
           </div>
-          <div class="text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
-            <%= link_to "Swipe", swipes_path, :method => :get %>
-          </div>
-          <div class="text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
-            <%= link_to "Matches", friends_path, :method => :get %>
-          </div>
-          <div class="text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
-            <%= link_to "Chat", chats_path, :method => :get %>
-          </div>
-          <div class="bg-red-600 hover:bg-red-700 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
-            <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-          </div>
+        <% end %>
+        <div>
+          <%= yield %>
         </div>
-      <% end %>
-      <div class="grow">
-        <%= yield %>
       </div>
-      <div>
     </main>
   </body>
 </html>
