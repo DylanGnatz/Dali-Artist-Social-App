@@ -17,12 +17,8 @@
   <br/>
 
   <div class="flex gap-x-3 items-stretch justify-between">
-    <div class="bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
-      <%= button_to  'Not Interested', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post %>
-    </div>
-    <div class="bg-emerald-400 hover:bg-emerald-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline">
-      <%= button_to  'Interested', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post %>
-    </div>
+    <%= button_to  'Not Interested', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+    <%= button_to  'Interested', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
   </div>
 
   <% else %>

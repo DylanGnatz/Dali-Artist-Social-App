@@ -6,13 +6,8 @@
   <br/>
 
   <div class="flex gap-x-3 items-stretch">
-    <div class="bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline">
-      <%= link_to  'View Public Profile', profiles_path(@profile.id), :method => :get %>
-    </div>
-    <div class="bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline">
-      <%= link_to  'Edit Profile', profiles_edit_path, :method => :get %>
-    </div>
-    <div class="bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline">
-      <%= link_to  'Add Artwork', new_artwork_path, :method => :get %>
-    </div>
+    <%= link_to  'View Public Profile', profiles_path(@profile.id), :method => :get, class: "bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline" %>
+    <%= link_to  'Edit Profile', profiles_edit_path, :method => :get, class: "bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline" %>
+    <%= link_to  'Add Artwork', new_artwork_path, :method => :get, class: "bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline" %>
+  </div>
 </div>
