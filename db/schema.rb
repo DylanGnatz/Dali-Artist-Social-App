@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_03_005517) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_10_151050) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "artworks", force: :cascade do |t|
     t.bigint "profile_id", null: false
     t.boolean "onPortfolio"
-    t.datetime "addedDate", null: false
     t.string "type", limit: 100
     t.string "title", limit: 100
     t.string "link", limit: 100
