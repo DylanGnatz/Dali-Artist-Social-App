@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'profiles/index'
+  get 'profiles/feed'
   get 'profiles/edit'
   put 'profiles/update'
   get '/profiles/:id', to: 'profiles#show', as: 'profiles'

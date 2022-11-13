@@ -17,12 +17,16 @@ class ProfilesController < ApplicationController
   def show
     id = params[:id]
     @profile = Profile.find(id)
-    # puts("calling show___________________________>>>>>>>")
-    # puts(id)
   end
-
-  def artwork 
-    @profile = Profile.find_by(user_id: current_user.id)
+  
+  def feed
+    profile = Profile.find_by(user_id: current_user.id)
+    @feed_items = []
+    profile.all_friends.each do |friend|
+      friend.artworks.each do |artwork|
+        @feed_items.push artwork
+      end
+    end
   end
 
   private
