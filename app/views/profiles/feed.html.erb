@@ -1,0 +1,19 @@
+<h1 class="font-bold text-8xl"> My Feed </h1>
+
+<br/>
+<br/>
+
+<div class="flex flex-col items-stretch gap-y-1">
+  <% @feed_items.each do |feed_item| %>
+
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+      <div class="font-bold text-gray-500">
+          <%= feed_item.profile.username %> added new artwork
+      </div>
+      <div class="font-bold text-2xl">
+          <%= feed_item.title %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
