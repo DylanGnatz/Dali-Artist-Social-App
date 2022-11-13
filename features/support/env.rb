@@ -5,7 +5,9 @@
 # files.
 
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter %r{devise_controller.rb}
+end
 
 require 'cucumber/rails'
 
