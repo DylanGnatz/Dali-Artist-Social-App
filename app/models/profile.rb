@@ -15,12 +15,4 @@ class Profile < ApplicationRecord
     all
   end
 
-  #how do i get a list of all the peices of art that a profile can have
-  #  def all_artwork
-  #    all_art = []
-    #Profile.find(id).artwork.each do |obj|
-    #  all_artwork.push(Profile.find(obj.art))
-   # end
-  #end
-
 end
