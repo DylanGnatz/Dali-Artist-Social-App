@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :event do
-    title { "MyString" }
+    title { "Test title" }
   end
 end

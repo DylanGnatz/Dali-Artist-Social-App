@@ -12,6 +12,7 @@ require 'support/database_cleaner'
 RSpec.configure do |config|
     config.include Devise::Test::ControllerHelpers, type: :controller
     config.include Devise::Test::ControllerHelpers, type: :view
+    config.include Devise::Test::ControllerHelpers, type: :request
     config.include FactoryBot::Syntax::Methods
     config.extend ControllerMacros, :type => :controller
 end
