@@ -3,9 +3,9 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
 
   # GET /events or /events.json
-  def index
-    @events = Event.all
-  end
+  # def index
+  #   @events = Event.all
+  # end
 
   # GET /events/1 or /events/1.json
   def show
@@ -36,17 +36,17 @@ class EventsController < ApplicationController
   end
 
   # PATCH/PUT /events/1 or /events/1.json
-  def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to profiles_index_path, notice: "Event was successfully updated." }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @event.update(event_params)
+  #       format.html { redirect_to profiles_index_path, notice: "Event was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @event }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @event.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /events/1 or /events/1.json
   def destroy
