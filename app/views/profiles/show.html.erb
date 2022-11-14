@@ -3,8 +3,11 @@
     <h1 class="font-bold text-8xl"> <%= @profile.username %> </h1>
 
     <br/>
-    <br/>
 
+    <br/>
+    <% if @profile.profile_photo.attached? %>
+      <image src = "<%=(url_for(@profile.profile_photo)) %>">
+    <% end%>
     <div class="flex flex-col items-stretch gap-y-4">
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl">About <%= @profile.username %></h3>
