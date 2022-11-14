@@ -7,13 +7,16 @@
     <h3 class="font-bold text-4xl"><%= @profile.username %></h3>
     
 
-    <%= form_tag profiles_update_path(@profile), :method => :put do %>
+    <%= form_tag profiles_update_path(@profile), :method => :put, multipart: true do %>
       <div class="flex flex-col items-stretch gap-2">
         <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
           <h3 class="font-bold text-4xl">Change Profile Photo</h3>
           <br/>
-          <%= label :profile, :photo, 'Bio', class: "invisible absolute" %>
-          <%= file_field :profile_photo%>
+          <% if @profile.profile_photo.attached? %>
+            <image src = "<%=(url_for(@profile.profile_photo)) %>">
+          <% end%>
+          <br/>
+          <%= file_field_tag :profile_photo %>
         </div>
           <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
             <h3 class="font-bold text-4xl">Edit Bio</h3>

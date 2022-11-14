@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find_by(user_id: current_user.id)
     @profile.update!(profile_params)
+    @profile.profile_photo.attach(params[:profile_photo])
     flash[:notice] = "Profile was successfully updated."
     redirect_to profiles_index_path
   end
@@ -36,5 +37,6 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:bio, :username, :date_of_birth)
+    params.require(:profile).permit(:profile_photo)
   end
 end
