@@ -1,0 +1,42 @@
+<%= form_with(model: event, class: "contents") do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+        <% event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col gap-y-3">
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
+      <h3 class="font-bold text-4xl">Title</h3>
+      <br/>
+      <%= label :event, :title, 'Title', class: "invisible absolute" %>
+      <%= text_field :event, 'title' %>
+    </div>
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+      <h3 class="font-bold text-4xl mr-auto">Date</h3>
+      <br/>
+      <div>
+        <%= label :event, :date, 'Date', class: "invisible absolute" %>
+        <%= date_select :event, :date, start_year: Date.current.year, include_blank: true %>
+      </div>
+    </div>
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
+      <h3 class="font-bold text-4xl">Location</h3>
+      <br/>
+      <%= label :event, :location, 'Location', class: "invisible absolute" %>
+      <%= text_field :event, 'location' %>
+    </div>
+  </div>
+
+  <br/>
+  
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

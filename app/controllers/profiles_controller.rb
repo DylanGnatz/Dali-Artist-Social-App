@@ -32,7 +32,6 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-  puts params
     params.require(:profile).permit(:bio, :username, :date_of_birth)
   end
 end

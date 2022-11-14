@@ -28,6 +28,23 @@
           </li>
         <% end%>
       </div>
+      <br/>
+      <br/>
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl"><%= @profile.username %>'s Events</h3>
+        <br/>
+        <% @profile.events.each do |event| %>
+          <li class="list-none mb-3">
+            <h4 class="font-bold text-xl" > <%= event.title %> </h4>
+            <% if event.date%>
+              <p> Date : <%= event.date.strftime('%F') %> </p>
+            <% end%>
+            <% if !event.location.blank? %>
+              <p> Location : <%= event.location %> </p>
+            <% end%>
+          </li>
+        <% end%>
+      </div>
     </div>
   <% else %>
     <h1 class="font-bold text-4xl">User does not exist!</h1>

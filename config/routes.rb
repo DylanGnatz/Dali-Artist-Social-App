@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :chats_messages
   resources :friends
   resources :artworks
+  resources :events
 
   root :to => redirect('/profiles/index')
 end
