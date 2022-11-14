@@ -5,15 +5,26 @@
 
 <div class="flex flex-col items-stretch gap-y-1">
   <% @feed_items.each do |feed_item| %>
-
-    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
-      <div class="font-bold text-gray-500">
-          <%= feed_item.profile.username %> added new artwork
+    <% if feed_item[:type] == :artwork %>
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+        <div class="font-bold text-gray-500">
+            <%= feed_item[:artwork].profile.username %> added new artwork
+        </div>
+        <div class="font-bold text-2xl">
+            <%= feed_item[:artwork].title %>
+        </div>
       </div>
-      <div class="font-bold text-2xl">
-          <%= feed_item.title %>
+    <% end %>
+    <% if feed_item[:type] == :event %>
+      <div class="p-3 border-2 border-sky-700 rounded-lg bg-sky-100 flex flex-col">
+        <div class="font-bold text-gray-500">
+            <%= feed_item[:event].profile.username %> added new event
+        </div>
+        <div class="font-bold text-2xl">
+            <%= feed_item[:event].title %>
+        </div>
       </div>
-    </div>
+    <% end %>
 
   <% end %>
 </div>

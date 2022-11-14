@@ -24,7 +24,10 @@ class ProfilesController < ApplicationController
     @feed_items = []
     profile.all_friends.each do |friend|
       friend.artworks.each do |artwork|
-        @feed_items.push artwork
+        @feed_items.push({type: :artwork, artwork: artwork})
+      end
+      friend.events.each do |event|
+        @feed_items.push({type: :event, event: event})
       end
     end
   end
