@@ -9,11 +9,7 @@ end
 
 Then /^I should be on the swipes page$/ do
   current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should == "/swipes"
-  else
-    assert_equal "/swipes", current_path
-  end
+  current_path.should == "/swipes"
 end
 
 Then /^I should be on the friends page$/ do
