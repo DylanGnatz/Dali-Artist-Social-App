@@ -10,9 +10,11 @@ Feature: Art feed
       | dali@gmail.com       | dali        |   123456 |
       | picasso@gmail.com    | picasso     |   123456 |
       | monet@gmail.com      | monet       |   123456 |
+      | manet@gmail.com      | manet       |   123456 |
     And I go to the home page
     And I log in with "dali@gmail.com" and "123456"
     And "dali" is friend with "picasso"
+    And "manet" is friend with "dali"
 
   Scenario: Access feed page
     When I go to the home page
@@ -31,3 +33,10 @@ Feature: Art feed
     And I go to the home page
     And I follow "Feed"
     Then I should not see "monet"
+
+  Scenario: See friends' events
+    When "picasso" add event "Cubist Brunch"
+    And I go to the home page
+    And I follow "Feed"
+    Then I should see "picasso added new event"
+    And I should see "Cubist Brunch"
