@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :friends
   resources :artworks
   resources :events
+  resources :profile_tags
 
   root :to => redirect('/profiles/index')
 end
