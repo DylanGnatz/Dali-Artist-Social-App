@@ -19,6 +19,8 @@ users = [
     { email:"mattered@gmail.com", first_name: "Matthew", last_name: "Red", username: "matteRED" },
 ]
 
+tags = %w[Painter Sculptor Writer Journalist Poet Musician Photographer DJ Model Actor Performance\ Artist Drawing Collage Graphic /Design Multimedia /Artist Film Director Composer]
+
 ChatsMessage.destroy_all
 Chat.destroy_all
 Friend.destroy_all
@@ -30,6 +32,9 @@ users.each do |user|
     User.create!({email: user[:email], password: password, username: user[:username]})
 end
 
+tags.each do |tag|
+  Tag.create!({tag_name: tag})
+end
 friends = [
     { :username => "shehan360", :friend => "tomrocks" },
     { :username => "shehan360", :friend => "benten" },

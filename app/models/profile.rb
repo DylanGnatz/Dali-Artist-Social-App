@@ -4,6 +4,7 @@ class Profile < ApplicationRecord
   has_many :friends
   has_many :artworks
   has_many :events
+  has_many :profile_tags
 
   def all_friends
     all = []
