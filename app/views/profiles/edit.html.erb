@@ -9,6 +9,12 @@
 
     <%= form_tag profiles_update_path(@profile), :method => :put do %>
       <div class="flex flex-col items-stretch gap-2">
+        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
+          <h3 class="font-bold text-4xl">Change Profile Photo</h3>
+          <br/>
+          <%= label :profile, :photo, 'Bio', class: "invisible absolute" %>
+          <%= file_field :profile_photo%>
+        </div>
           <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
             <h3 class="font-bold text-4xl">Edit Bio</h3>
             <br/>
