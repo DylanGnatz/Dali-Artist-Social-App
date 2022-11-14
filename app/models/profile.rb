@@ -3,6 +3,7 @@ class Profile < ApplicationRecord
   has_and_belongs_to_many :chats, through: :chats_profiles
   has_many :friends
   has_many :artworks
+  has_many :events
 
   def all_friends
     all = []

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_10_151050) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_13_183400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_151050) do
     t.datetime "updated_at", null: false
     t.index ["chat_id"], name: "index_chats_profiles_on_chat_id"
     t.index ["profile_id"], name: "index_chats_profiles_on_profile_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.string "title"
+    t.datetime "date"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_events_on_profile_id"
   end
 
   create_table "friends", force: :cascade do |t|
@@ -94,6 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_151050) do
   add_foreign_key "chats_messages", "profiles"
   add_foreign_key "chats_profiles", "chats"
   add_foreign_key "chats_profiles", "profiles"
+  add_foreign_key "events", "profiles"
   add_foreign_key "friends", "profiles"
   add_foreign_key "swipes", "profiles"
 end
