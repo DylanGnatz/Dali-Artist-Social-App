@@ -12,7 +12,8 @@
 ### Dependencies
 
 - `postgres` (tested with v14.5)
-- `ruby` (tested with v2.7.6)
+- `ruby` (v2.7.6)
+- tested under MacOS 13, with an ARM chip (M1)
 
 ### Setup
 
