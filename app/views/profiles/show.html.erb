@@ -5,7 +5,7 @@
     <br/>
     <br/>
 
-    <div class="flex flex-col items-stretch">
+    <div class="flex flex-col items-stretch gap-y-4">
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl">About <%= @profile.username %></h3>
         <br/>
@@ -13,8 +13,6 @@
       </div>
       <%# <br/>
       <h3>Tags go here</h3> %>
-      <br/>
-      <br/>
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl"><%= @profile.username %>'s Art</h3>
         <br/>
@@ -28,8 +26,6 @@
           </li>
         <% end%>
       </div>
-      <br/>
-      <br/>
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl"><%= @profile.username %>'s Events</h3>
         <br/>
