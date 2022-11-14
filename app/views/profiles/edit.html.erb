@@ -1,13 +1,11 @@
-<div>
+<div class="flex flex-col gap-y-3">
   <% if @profile %>
     <h1 class="font-bold text-8xl"> Edit Profile </h1>
 
     <br/>
-    <br/>
 
     <h3 class="font-bold text-4xl"><%= @profile.username %></h3>
     
-    <br/>
 
     <%= form_tag profiles_update_path(@profile), :method => :put do %>
       <div class="flex flex-col items-stretch gap-2">
@@ -30,6 +28,28 @@
           </div>
       </div>
     <% end %>
+
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+      <h3 class="font-bold text-4xl">Edit Artworks</h3>
+      <br/>
+      <% @profile.artworks.each do |art| %>
+        <li class="list-none mb-3 flex justify-between">
+          <h4 class="font-bold text-xl" > <%= art.title %> </h4>
+          <%= button_to 'Delete', art, method: :delete, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"%>
+        </li>
+      <% end%>
+    </div>
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+      <h3 class="font-bold text-4xl">Edit Events</h3>
+      <br/>
+      <% @profile.events.each do |event| %>
+        <li class="list-none mb-3 flex justify-between">
+          <h4 class="font-bold text-xl" > <%= event.title %> </h4>
+          <%= button_to 'Delete', event, method: :delete, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"%>
+        </li>
+      <% end%>
+    </div>
+
   <% else %>
     <h1 class="font-bold text-4xl">User does not exist!</h1>
   <% end %>
