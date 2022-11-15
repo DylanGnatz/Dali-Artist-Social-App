@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_14_225151) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_15_164530) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -112,6 +112,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_14_225151) do
     t.string "bio", limit: 2000
     t.date "date_of_birth"
     t.bigint "user_id"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
