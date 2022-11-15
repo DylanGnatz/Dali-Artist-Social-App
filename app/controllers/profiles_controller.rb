@@ -27,6 +27,8 @@ class ProfilesController < ApplicationController
     profile = Profile.find_by(user_id: current_user.id)
     profile.update(lat: params["lat"])
     profile.update(lng: params["lng"])
+    puts(params["lat"])
+    puts(params["lng"])
   end
   
   def feed
