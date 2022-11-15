@@ -24,6 +24,11 @@
           <%= label :artwork, :description, 'Description', class: "invisible absolute" %>
           <%= text_area :artwork, 'description' %>
         </div>
+        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
+          <h3 class="font-bold text-4xl">Upload Image</h3>
+          <br/>
+          <%= file_field_tag :artImage %>
+        </div>
 
         <div class="flex flex-row">
           <%= submit_tag 'Add art!', class:"text-amber-900 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>

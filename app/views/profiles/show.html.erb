@@ -26,6 +26,10 @@
             <% if art.link%>
               <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600"%>
             <% end%>
+            <% if art.artImage%>
+              <%= image_tag url_for(art.artImage)%>
+              <h4> <%= art.artImage %> </h4>
+            <% end%>
             <p> <%= art.description %> </p>
           </li>
         <% end%>
