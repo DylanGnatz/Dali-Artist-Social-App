@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find_by(user_id: current_user.id)
     @profile.update!(profile_params)
     @profile.profile_photo.attach(params[:profile_photo])
+
     flash[:notice] = "Profile was successfully updated."
     redirect_to profiles_index_path
   end
@@ -21,6 +22,8 @@ class ProfilesController < ApplicationController
   def show
     id = params[:id]
     @profile = Profile.find(id)
+    #test
+    @artwork = @profile.artworks.pick()
   end
 
   def location

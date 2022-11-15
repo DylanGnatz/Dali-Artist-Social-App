@@ -2,11 +2,9 @@ class ArtworksController < ApplicationController
     before_action :authenticate_user!
 
     def create
-        newArt = Artwork.create!(art_params.merge({profile: current_user.profile}))
-        newArt.artImage.attach(params[:artImage])
-        print("##############THIS PART RIGHT HERE####################")
-        print(newArt.artImage)
-        print("##############POST UPLOAD####################")
+        new_art = Artwork.create!(art_params.merge({profile: current_user.profile}))
+        new_art.art_image.attach(params[:art_image])
+        new_art.save
         flash[:notice] = "'#{art_params[:title]}' was successfully created."
         redirect_to profiles_index_path
     end
@@ -19,7 +17,7 @@ class ArtworksController < ApplicationController
 
     private
     def art_params
-      params.require(:artwork).permit(:title, :link, :onPortfolio, :addedDate, :type, :description, :isPrivate, :priority, :artImage)
+      params.require(:artwork).permit(:title, :link, :onPortfolio, :addedDate, :type, :description, :isPrivate, :priority, :art_image)
     end
 
 end
