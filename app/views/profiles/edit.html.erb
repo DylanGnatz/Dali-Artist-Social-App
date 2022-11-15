@@ -32,9 +32,7 @@
           <%= file_field_tag :profile_photo %>
         </div>
 
-
-
-        <%= select_tag(:tag_id, options_from_collection_for_select(Tag.all, :id, :tag_name), include_blank: "Add New Tag")%>
+        
           <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
             <h3 class="font-bold text-4xl">Edit Bio</h3>
             <br/>
