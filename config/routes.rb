@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   put 'profiles/update'
   put 'profile_tags/update'
   get '/profiles/:id', to: 'profiles#show', as: 'profiles'
+  get "/location" => "profiles#location"
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :chats

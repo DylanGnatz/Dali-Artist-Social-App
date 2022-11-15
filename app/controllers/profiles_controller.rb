@@ -22,6 +22,12 @@ class ProfilesController < ApplicationController
     id = params[:id]
     @profile = Profile.find(id)
   end
+
+  def location
+    profile = Profile.find_by(user_id: current_user.id)
+    profile.update(lat: params["lat"])
+    profile.update(lng: params["lng"])
+  end
   
   def feed
     profile = Profile.find_by(user_id: current_user.id)
