@@ -20,6 +20,17 @@ class ProfileTagsController < ApplicationController
     redirect_to profile_tags_path
   end
 
+  def update
+    @profile = Profile.find_by(user_id: current_user.id)
+    @tag = Tag.find_by(id: params[:tag_id])
+    if @tag
+      ProfileTag.find_or_create_by(tags_id: @tag.id, profile_id: @profile.id)
+    else
+      flash[:notice] = "Invalid Tag"
+    end
+    redirect_to profiles_edit_path
+  end
+
   def destroy
     profile = Profile.find_by(user_id: current_user.id)
     tag_name = params[:tag_name]

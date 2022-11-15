@@ -1,3 +1,3 @@
 class ProfileTag < ApplicationRecord
-  belongs_to :profile, :tag
+  belongs_to :profile
 end

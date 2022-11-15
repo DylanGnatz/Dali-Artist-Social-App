@@ -5,8 +5,21 @@
     <br/>
 
     <h3 class="font-bold text-4xl"><%= @profile.username %></h3>
-    
 
+    <%= form_tag profile_tags_update_path(@profile), :method => :put, multipart: true do %>
+      <div class="flex flex-col items-stretch gap-2">
+        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
+          <h3 class="font-bold text-4xl">Edit Profile Tags</h3>
+          <% @tags.each do |tag| %>
+            <li class="list-none mb-3 flex justify-between">
+              <h4 class="font-bold text-xl" > <%= tag.tag_name %> </h4>
+            </li>
+          <% end%>
+
+          <%= select_tag(:tag_id, options_from_collection_for_select(@available_tags, :id, :tag_name), include_blank: "Add New Tag")%>
+          <%= submit_tag 'Add Tag', class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+        </div>
+    <% end %>
     <%= form_tag profiles_update_path(@profile), :method => :put, multipart: true do %>
       <div class="flex flex-col items-stretch gap-2">
         <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
@@ -18,6 +31,10 @@
           <br/>
           <%= file_field_tag :profile_photo %>
         </div>
+
+
+
+        <%= select_tag(:tag_id, options_from_collection_for_select(Tag.all, :id, :tag_name), include_blank: "Add New Tag")%>
           <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
             <h3 class="font-bold text-4xl">Edit Bio</h3>
             <br/>
