@@ -19,7 +19,7 @@ users = [
     { email:"mattered@gmail.com", first_name: "Matthew", last_name: "Red", username: "matteRED" },
 ]
 
-tags = %w[Painter Sculptor Writer Journalist Poet Musician Photographer DJ Model Actor Performance\ Artist Drawing Collage Graphic /Design Multimedia /Artist Film Director Composer]
+tags = %w[Painter Sculptor Writer Journalist Poet Musician Photographer DJ Model Actor Performance\ Artist Drawing Collage Graphic\ Design Multimedia\ Artist Film Director Composer]
 
 ChatsMessage.destroy_all
 Chat.destroy_all

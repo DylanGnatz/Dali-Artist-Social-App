@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'profiles/feed'
   get 'profiles/edit'
   put 'profiles/update'
+  put 'profile_tags/update'
   get '/profiles/:id', to: 'profiles#show', as: 'profiles'
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
