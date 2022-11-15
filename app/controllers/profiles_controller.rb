@@ -4,7 +4,6 @@ class ProfilesController < ApplicationController
     @profile = Profile.find_by(user_id: current_user.id)
   end
   def edit
-
     @profile = Profile.find_by(user_id: current_user.id)
     profile_tags = ProfileTag.where(profile_id: @profile.id).pluck(:tags_id)
     @tags = Tag.where(id: profile_tags)
