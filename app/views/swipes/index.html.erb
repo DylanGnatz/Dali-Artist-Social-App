@@ -1,3 +1,15 @@
+<%= javascript_include_tag('location.js') %>
+<%# <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> %>
+<script   src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        console.log('___________________________________')
+        getLocation()
+    });
+</script>
 <div>
   <% if @potential_match %>
   <h1 class="font-bold text-8xl"><%= @potential_match.username %></h1>
