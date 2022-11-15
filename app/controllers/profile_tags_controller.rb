@@ -15,7 +15,7 @@ class ProfileTagsController < ApplicationController
     if tag
       ProfileTag.create!(profile_id: profile.id, tag_id: tag.id)
     else
-      flash[:notice] = "Invalid Tag"
+      flash[:alert] = "Invalid Tag"
     end
     redirect_to profile_tags_path
   end
@@ -26,7 +26,7 @@ class ProfileTagsController < ApplicationController
     if @tag
       ProfileTag.find_or_create_by(tags_id: @tag.id, profile_id: @profile.id)
     else
-      flash[:notice] = "Invalid Tag"
+      flash[:alert] = "Invalid Tag"
     end
     redirect_to profiles_edit_path
   end
@@ -39,7 +39,7 @@ class ProfileTagsController < ApplicationController
     if profile_tag
       profile_tag.destroy
     else
-      flash[:notice] = "Invalid Tag"
+      flash[:alert] = "Invalid Tag"
     end
     redirect_to profiles_edit_path
   end
