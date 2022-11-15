@@ -33,14 +33,14 @@ class ProfileTagsController < ApplicationController
 
   def destroy
     profile = Profile.find_by(user_id: current_user.id)
-    tag_name = params[:tag_name]
-    tag = Tag.find_by(tag_name: tag_name)
-    profile_tag = ProfileTag.find_by(profile_id: profile.id, tag_id: tag.id)
+    #tag_name = params[:tag_name]
+
+    profile_tag = ProfileTag.find_by(profile_id: profile.id, tags_id: params[:id])
     if profile_tag
-      ProfileTag.destroy
+      profile_tag.destroy
     else
       flash[:notice] = "Invalid Tag"
     end
-    redirect_to profile_tags_path
+    redirect_to profiles_edit_path
   end
 end
