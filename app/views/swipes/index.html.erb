@@ -18,9 +18,42 @@
 
   <div class="flex flex-col items-stretch">
     <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-      <h3 class="font-bold text-4xl">About <%= @potential_match.username %></h3>
+      <% if @potential_match.profile_photo.attached? %>
+        <image src = "<%=(url_for(@potential_match.profile_photo)) %>">
+      <% end%>
+
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Tags</h3>
+        <% @potential_match.tags.each do |tag| %>
+          <h4><%= tag.name %></h4>
+        <% end%>
+      </div>
+
       <br/>
-      <p><%= @potential_match.bio %></p>
+      <div class="flex flex-col items-stretch gap-y-4">
+        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+          <h3 class="font-bold text-4xl">About <%= @potential_match.username %></h3>
+          <br/>
+          <p><%= @potential_match.bio %></p>
+        </div>
+
+
+        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+          <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Art</h3>
+          <br/>
+          <% @potential_match.artworks.each do |art| %>
+            <li class="list-none mb-3">
+              <h4 class="font-bold text-xl" > <%= art.title %> </h4>
+              <% if art.link%>
+                <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600"%>
+              <% end%>
+              <% if art.art_image%>
+                <image src = "<%=(url_for(art.art_image)) %>">
+              <% end%>
+              <p> <%= art.description %> </p>
+            </li>
+          <% end%>
+        </div>
     </div>
   </div>
 
