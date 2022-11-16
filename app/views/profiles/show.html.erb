@@ -6,7 +6,7 @@
 
     <br/>
     <% if @profile.profile_photo.attached? %>
-      <image src = "<%=(url_for(@profile.profile_photo)) %>">
+      <image src = "<%=(url_for(@profile.profile_photo)) %>" class="max-h-96 mx-auto">
     <% end%>
   
     <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
