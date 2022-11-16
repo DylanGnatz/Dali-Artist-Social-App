@@ -4,9 +4,9 @@ class CreateTags < ActiveRecord::Migration[7.0]
       t.string :tag_name
       t.timestamps
     end
-    create_table :profile_tags do |t|
-      t.references :profile, null: false, foreign_key: true
-      t.references :tag, null: false, foreign_key: true
+    create_table :profiles_tags do |t|
+      t.belongs_to :profile
+      t.belongs_to :tag
       t.timestamps
     end
   end
