@@ -12,8 +12,6 @@
       <h4 class="text-xl"> <%=@distance%> miles away!</h4>
     <%end%>
 
-
-  <br/>
   <br/>
 
   <div class="flex flex-col items-stretch">
@@ -34,7 +32,9 @@
         <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
           <h3 class="font-bold text-4xl">About <%= @potential_match.username %></h3>
           <br/>
-          <p><%= @potential_match.bio %></p>
+          <div class="max-h-64 overflow-auto">
+            <p class="whitespace-pre-wrap"><%= @potential_match.bio %></p>
+          </div>
         </div>
 
 
@@ -58,20 +58,22 @@
   </div>
 
   <br/>
-  <br/>
 
   <div class="flex gap-x-3 items-stretch justify-between">
-    <%= button_to  'Not Interested', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
-    <%= button_to  'Interested', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+    <%= button_to  'Interested 👍', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline" %>
+    <%= button_to  'Not Interested 👎', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline" %>
   </div>
 
   <% else %>
     <h1 class="font-bold text-4xl">You've run out of profiles in your area! Try again later</h1>
   <% end %>
 
-  <%= button_tag  'Update Location', :onclick => "getLocation()", class: "bg-blue-400 hover:bg-blue-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+  <br/>
+
+  <%= button_tag  'Update Location 📍', :onclick => "getLocation()", class: "bg-blue-400 hover:bg-blue-500 font-bold py-2 px-4 mb-2 rounded text-center focus:outline-none focus:shadow-outline" %>
+
   <% if @geocoder %>
-    <h4 class="font-bold text-xl" >Current Location: <%= @geocoder.city %>, <%= @geocoder.country %> </h4>
+    <h4 class="text-xl" > <b>Current Location: </b> <%= @geocoder.city %>, <%= @geocoder.country %> </h4>
   <% else %>
     <h4 class="font-bold text-xl" >Location Data Unavailable</h4>
     <h4 class="font-bold text-xl" >Please Update Location and refresh page </h4>

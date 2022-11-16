@@ -6,6 +6,8 @@
 
     <h3 class="font-bold text-4xl"><%= @profile.username %></h3>
 
+    <br/>
+
     <div class="flex flex-col items-stretch gap-2">
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
         <h3 class="font-bold text-4xl">Edit Profile Tags</h3>
@@ -14,11 +16,11 @@
           <% @profile.tags.each do |tag| %>
             <span id="badge-dismiss-default" class="inline-flex items-center py-1 px-2 text-sm font-medium text-blue-900 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-900">
               <%= tag.name %>
-                <%= button_to profile_tag_path(tag), method: :delete, id: tag.name, authenticity_token: true,
-                  class: "inline-flex items-center p-0.5 ml-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-300 dark:hover:text-blue-900" do %>
-                  ✕
-                  <span class="sr-only">Remove badge</span>
-                <% end %>
+              <%= button_to profile_tag_path(tag), method: :delete, id: tag.name, authenticity_token: true,
+                class: "inline-flex items-center p-0.5 ml-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-300 dark:hover:text-blue-900" do %>
+                ✕
+                <span class="sr-only">Remove badge</span>
+              <% end %>
             </span>
           <% end%>
         </div>
@@ -70,7 +72,7 @@
       <% @profile.artworks.each do |art| %>
         <li class="list-none mb-3 flex justify-between">
           <h4 class="font-bold text-xl" > <%= art.title %> </h4>
-          <%= button_to 'Delete', art, method: :delete, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"%>
+          <%= button_to 'Delete', art, method: :delete, class:"bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline"%>
         </li>
       <% end%>
     </div>
@@ -80,7 +82,7 @@
       <% @profile.events.each do |event| %>
         <li class="list-none mb-3 flex justify-between">
           <h4 class="font-bold text-xl" > <%= event.title %> </h4>
-          <%= button_to 'Delete', event, method: :delete, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"%>
+          <%= button_to 'Delete', event, method: :delete, class:"bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline"%>
         </li>
       <% end%>
     </div>
