@@ -24,7 +24,7 @@ class ProfileTagsController < ApplicationController
     @profile = Profile.find_by(user_id: current_user.id)
     @tag = Tag.find_by(id: params[:tag_id])
     if @tag
-      ProfileTag.find_or_create_by(tags_id: @tag.id, profile_id: @profile.id)
+      ProfileTag.find_or_create_by(tag_id: @tag.id, profile_id: @profile.id)
     else
       flash[:alert] = "Invalid Tag"
     end
@@ -35,7 +35,7 @@ class ProfileTagsController < ApplicationController
     profile = Profile.find_by(user_id: current_user.id)
     #tag_name = params[:tag_name]
 
-    profile_tag = ProfileTag.find_by(profile_id: profile.id, tags_id: params[:id])
+    profile_tag = ProfileTag.find_by(profile_id: profile.id, tag_id: params[:id])
     if profile_tag
       profile_tag.destroy
     else
