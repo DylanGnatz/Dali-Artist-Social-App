@@ -3,17 +3,24 @@
     <h1 class="font-bold text-8xl"> <%= @profile.username %> </h1>
 
     <br/>
-
     <br/>
+
     <% if @profile.profile_photo.attached? %>
-      <image src = "<%=(url_for(@profile.profile_photo)) %>" class="max-h-96 mx-auto">
+      <image src = "<%=(url_for(@profile.profile_photo)) %>" class="max-h-96 mx-auto rounded-full">
+      <br/>
     <% end%>
+
   
     <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
       <h3 class="font-bold text-4xl"><%= @profile.username %>'s Tags</h3>
-      <% @profile.tags.each do |tag| %>
-        <h4><%= tag.name %></h4>
-      <% end%>
+      <br/>
+      <div class="flex flex-wrap gap-2">
+          <% @profile.tags.each do |tag| %>
+            <span id="badge-dismiss-default" class="inline-flex items-center py-1 px-2 text-sm font-medium text-blue-900 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-900">
+              <%= tag.name %>
+            </span>
+          <% end%>
+        </div>
     </div>
 
     <br/>
@@ -21,7 +28,7 @@
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl">About <%= @profile.username %></h3>
         <br/>
-        <p><%= @profile.bio %></p>
+        <p class="whitespace-pre-wrap"><%= @profile.bio %></p>
       </div>
   
 
