@@ -7,6 +7,8 @@ class Profile < ApplicationRecord
   has_many :profile_tags
   has_one_attached :profile_photo
 
+  reverse_geocoded_by :lat, :lng
+
   def all_friends
     all = []
     Profile.find(id).friends.each do |obj|
