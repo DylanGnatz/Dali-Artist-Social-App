@@ -8,6 +8,7 @@ class Profile < ApplicationRecord
   has_one_attached :profile_photo
 
   reverse_geocoded_by :lat, :lng
+  has_and_belongs_to_many :collectives, through: :collectives_profiles
 
   def all_friends
     all = []

@@ -42,17 +42,26 @@ describe ChatsController do
     end
 
     describe 'get show' do
-        it 'get show shows a chat given id' do
+        it 'shows a chat given id' do
             expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
-            expect(Chat).to receive(:find).with(@chat1.id.to_s).and_return(@chat1)
+            expect(Chat).to receive(:find_by_id).with(@chat1.id.to_s).and_return(@chat1)
 
             get :show, params: { id: @chat1.id }
             expect(response).to be_successful
         end
 
-        it 'get show selects show template to render' do
+        it 'redirects to chats page given non relevant id' do
+            chat3 = create(:chat, profiles: [@profile3, @profile4])
+            expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+            expect(Chat).to receive(:find_by_id).with(chat3.id.to_s).and_return(nil)
+
+            get :show, params: { id: chat3.id }
+            expect(response).to redirect_to(chats_path)
+        end
+
+        it 'selects show template to render' do
             allow(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
-            allow(Chat).to receive(:find).with(@chat1.id.to_s).and_return(@chat1)
+            allow(Chat).to receive(:find_by_id).with(@chat1.id.to_s).and_return(@chat1)
 
             get :show, params: { id: @chat1.id }
             expect(response).to render_template('show')
@@ -60,7 +69,7 @@ describe ChatsController do
 
         it 'makes the results available to that template' do
             allow(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
-            allow(Chat).to receive(:find).with(@chat1.id.to_s).and_return(@chat1)
+            allow(Chat).to receive(:find_by_id).with(@chat1.id.to_s).and_return(@chat1)
 
             get :show, params: { id: @chat1.id }
             messages_ex = [{ msg: 'hey', from_profile: true, sender: @profile1.username }, 

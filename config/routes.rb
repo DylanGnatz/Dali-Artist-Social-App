@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :collectives
   get 'profiles/index'
   get 'profiles/feed'
   get 'profiles/edit'
