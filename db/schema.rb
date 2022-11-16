@@ -80,6 +80,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_234640) do
     t.index ["profile_id"], name: "index_chats_profiles_on_profile_id"
   end
 
+  create_table "collectives", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "chat_id", null: false
+    t.index ["chat_id"], name: "index_collectives_on_chat_id"
+  end
+
+  create_table "collectives_profiles", force: :cascade do |t|
+    t.bigint "collective_id", null: false
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collective_id"], name: "index_collectives_profiles_on_collective_id"
+    t.index ["profile_id"], name: "index_collectives_profiles_on_profile_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.bigint "profile_id", null: false
     t.string "title"
@@ -153,6 +170,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_234640) do
   add_foreign_key "chats_messages", "profiles"
   add_foreign_key "chats_profiles", "chats"
   add_foreign_key "chats_profiles", "profiles"
+  add_foreign_key "collectives", "chats"
+  add_foreign_key "collectives_profiles", "collectives"
+  add_foreign_key "collectives_profiles", "profiles"
   add_foreign_key "events", "profiles"
   add_foreign_key "friends", "profiles"
   add_foreign_key "profile_tags", "profiles"

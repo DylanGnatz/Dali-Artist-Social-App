@@ -1,0 +1,20 @@
+<h1 class="font-bold text-8xl"><%= @collective.name %></h1>
+<br>
+<%= button_to  'Chat', chat_path(@collective.chat.id), :method => :get, class: "bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+<br>
+<h3 class="font-bold text-4xl"> Members </h1>
+<div class="flex flex-col items-stretch gap-y-1">
+  <% @collective.profiles.each do |profile| %>
+
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex justify-between items-center">
+      <div class="font-bold text-2xl">
+          <%= profile[:username] %>
+      </div>
+
+      <div class="flex gap-x-2">
+        <%= button_to  'View Profile', profiles_path(profile[:id]), :method => :get, class: "bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
