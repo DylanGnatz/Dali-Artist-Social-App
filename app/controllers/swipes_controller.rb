@@ -5,7 +5,8 @@ class SwipesController < ApplicationController
     @profile = Profile.find_by(user_id: current_user.id)
     @already_swiped = Swipe.where(profile_id: @profile.id).pluck(:swiped_id)
     @already_swiped.push(@profile.id)
-    @potential_match = Profile.where.not(id: @already_swiped).order("RANDOM()").first
+    @potential_match = Profile.near([@profile.lat, @profile.lng], 50).where.not(id: @already_swiped).order("RANDOM()").first
+    #@potential_match = Profile.where.not(id: @already_swiped).order("RANDOM()").first
     @geocoder = @profile.get_geocoder_data
     if @potential_match
       @distance = Geocoder::Calculations.distance_between([@profile.lat, @profile.lng], [@potential_match.lat, @potential_match.lng])
