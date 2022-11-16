@@ -33,7 +33,7 @@ users.each do |user|
 end
 
 tags.each do |tag|
-  Tag.create!({tag_name: tag})
+  Tag.create!({name: tag})
 end
 friends = [
     { :username => "shehan360", :friend => "tomrocks" },

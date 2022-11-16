@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_15_234640) do
+
+ActiveRecord::Schema[7.0].define(version: 2022_11_16_184221) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -115,14 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_234640) do
     t.index ["profile_id"], name: "index_friends_on_profile_id"
   end
 
-  create_table "profile_tags", force: :cascade do |t|
-    t.bigint "profile_id", null: false
-    t.bigint "tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["profile_id"], name: "index_profile_tags_on_profile_id"
-    t.index ["tag_id"], name: "index_profile_tags_on_tag_id"
-  end
 
   create_table "profiles", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -136,6 +130,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_234640) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "profiles_tags", id: false, force: :cascade do |t|
+    t.bigint "profile_id"
+    t.bigint "tag_id"
+    t.index ["profile_id"], name: "index_profiles_tags_on_profile_id"
+    t.index ["tag_id"], name: "index_profiles_tags_on_tag_id"
+  end
+
   create_table "swipes", force: :cascade do |t|
     t.bigint "profile_id", null: false
     t.integer "swiped_id", null: false
@@ -145,7 +146,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_234640) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "tag_name"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -175,7 +176,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_234640) do
   add_foreign_key "collectives_profiles", "profiles"
   add_foreign_key "events", "profiles"
   add_foreign_key "friends", "profiles"
-  add_foreign_key "profile_tags", "profiles"
-  add_foreign_key "profile_tags", "tags"
+
   add_foreign_key "swipes", "profiles"
 end

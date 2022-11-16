@@ -1,3 +1,3 @@
 class Tag < ApplicationRecord
-  has_many :profile_tags
+  has_and_belongs_to_many :profile
 end
