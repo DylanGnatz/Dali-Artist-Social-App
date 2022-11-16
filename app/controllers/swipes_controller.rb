@@ -3,7 +3,7 @@ class SwipesController < ApplicationController
   def index
 
     @profile = Profile.find_by(user_id: current_user.id)
-    unless @profile.search_setting.exists?
+    unless @profile.search_setting
       @profile.search_setting = SearchSetting.create(search_radius: 50, gender_restrict: false, tag_restrict: false, show_events: true, show_profiles: true, show_collectives: true)
     end
     already_swiped = Swipe.where(profile_id: @profile.id).pluck(:swiped_id)
