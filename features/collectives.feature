@@ -99,3 +99,25 @@ Scenario: Chat in a collective Chat
     Then I should be on the chat show page
     And I should see "Hi bois"
     And I should see "Hi homies"
+
+  Scenario: Shows an error when no collective name is given
+    When I go to the home page
+    And I log in with "dali@gmail.com" and "123456"
+    Then I should successfully sign in
+    When I follow "Collectives"
+    And I follow "New Collective"
+    When I select checkbox "picasso"
+    When I select checkbox "vinci"
+    And I click the "Create Collective" button
+    Then I should see "The collective must have a name!"
+
+  Scenario: Shows an error when no members are selected
+    When I go to the home page
+    And I log in with "dali@gmail.com" and "123456"
+    Then I should successfully sign in
+    When I follow "Collectives"
+    And I follow "New Collective"
+    When I fill in "collective_name" with "GG Boys"
+    And I click the "Create Collective" button
+    Then I should see "The collective must have other members!"
+    
