@@ -31,7 +31,7 @@ Feature:
     And I log in with "dali@gmail.com" and "123456"
     And I follow "Swipe"
     Then I should see "Interested"
-    And I should see "Not Interested"
+    And I should see "Not interested"
 
   Scenario: Exclude user's account from queue and notify when there are no more profiles
     When I go to the home page
@@ -60,7 +60,7 @@ Feature:
     And I sign out
     And I log in with "picasso@gmail.com" and "123456"
     And I follow "Swipe"
-    And I click the "Not Interested" button
+    And I click the "Not interested" button
     Then I should not see "You just matched with 'dali'!"
 
 
