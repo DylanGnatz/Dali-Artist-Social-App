@@ -9,6 +9,7 @@ function getLocation(){
                 dataType: 'json'
             }).done(function(data){
                 console.log(data)
+                location.reload()
             });
         });
     }
