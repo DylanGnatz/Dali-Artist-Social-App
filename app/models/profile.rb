@@ -18,4 +18,12 @@ class Profile < ApplicationRecord
     all
   end
 
+  def get_geocoder_data
+    lat = "latitude"
+    lon = "longitude"
+    lat_lng = "#{self.lat},#{self.lng}"
+    response = Geocoder.search(lat_lng).first
+    return response
+  end
+
 end
