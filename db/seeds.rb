@@ -52,7 +52,7 @@ end
 
 chats = [
     { :username => "shehan360", :friend => "tomrocks", :messages => [{sender: 'shehan360', msg: 'Sup bro?'}, {sender: 'tomrocks', msg: 'good bro. u?'}] },
-    { :username => "shehan360", :friend => "matt20",  :messages => [{sender: 'tomrocks', msg: 'sup?'}]},
+    { :username => "shehan360", :friend => "matt20",  :messages => [{sender: 'matt20', msg: 'sup?'}]},
 ]
 
 chats.each do |chatObj|

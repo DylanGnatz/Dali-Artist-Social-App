@@ -10,6 +10,7 @@ class ProfileTagsController < ApplicationController
   end
 
   def update
+
     profile = Profile.find_by(user_id: current_user.id)
     puts("#######################")
     puts(params)
@@ -28,8 +29,10 @@ class ProfileTagsController < ApplicationController
     profile = Profile.find_by(user_id: current_user.id)
     tag = Tag.find_by(id: params[:id])
 
+
     if tag
       profile.tags.delete(tag)
+
     else
       flash[:alert] = "Invalid Tag"
     end

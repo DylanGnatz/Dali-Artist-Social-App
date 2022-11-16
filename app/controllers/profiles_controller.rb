@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
   def edit
     @profile = Profile.find_by(user_id: current_user.id)
     @available_tags = Tag.where.not(id: @profile.tags).order('name')
+
   end
 
   def update
@@ -31,6 +32,7 @@ class ProfilesController < ApplicationController
     else
       profile.update(lat: request.location.latitude, lng: request.location.longitude)
     end
+    redirect_to swipes_path
   end
   
   def feed

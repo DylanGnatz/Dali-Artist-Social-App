@@ -4,14 +4,37 @@ class ChatsController < ApplicationController
     def index
         profile = Profile.find_by(user_id: current_user.id)
         @chats = []
+        @collective_chats = []
         profile.chats.each do |chat|
-            @chats.push({ name: (chat.profiles - [profile])[0].username, id: chat.id })
+            if chat.profiles.size == 2
+                @chats.push({ name: (chat.profiles - [profile])[0].username, id: chat.id })
+            end
+        end
+
+        profile.collectives.each do |collective|
+            @collective_chats.push({ name: collective.name, id: collective.chat.id })
         end
     end
 
     def show
-        @chat = Chat.find(params[:id])
         @profile = Profile.find_by(user_id: current_user.id)
+        @chat = @profile.chats.find_by_id(params[:id])
+
+        if @chat == nil
+            redirect_to chats_path
+            return
+        end
+
+        if @chat.profiles.size == 2
+            @name = (@chat.profiles - [@profile])[0].username
+        else
+            @profile.collectives.each do |collective|
+                if collective.chat.id.to_i == params[:id].to_i
+                    @name = collective.name
+                    break
+                end
+            end
+        end
 
         @messages = []
         @chat.chats_messages.each do |chat_message|
