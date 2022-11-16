@@ -3,9 +3,12 @@ class SwipesController < ApplicationController
   def index
 
     @profile = Profile.find_by(user_id: current_user.id)
+    unless @profile.search_setting
+      @profile.search_setting = SearchSetting.create(search_radius: 50, gender_restrict: false, tag_restrict: false, show_events: true, show_profiles: true, show_collectives: true)
+    end
     already_swiped = Swipe.where(profile_id: @profile.id).pluck(:swiped_id)
     already_swiped.push(@profile.id)
-    @potential_match = Profile.near([@profile.lat, @profile.lng], 50).where.not(id: already_swiped).order("RANDOM()").first
+    @potential_match = Profile.near([@profile.lat, @profile.lng], @profile.search_setting.search_radius).where.not(id: already_swiped).order("RANDOM()").first
     #@potential_match = Profile.where.not(id: @already_swiped).order("RANDOM()").first
     @geocoder = @profile.get_geocoder_data
     if @potential_match
