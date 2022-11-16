@@ -8,14 +8,22 @@
     <% if @profile.profile_photo.attached? %>
       <image src = "<%=(url_for(@profile.profile_photo)) %>">
     <% end%>
+  
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+      <h3 class="font-bold text-4xl"><%= @profile.username %>'s Tags</h3>
+      <% @profile.profile_tags.each do |tag| %>
+        <h4>there's a tag <%= tag.tag_id %></h4>
+      <% end%>
+    </div>
+
+    <br/>
     <div class="flex flex-col items-stretch gap-y-4">
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl">About <%= @profile.username %></h3>
         <br/>
         <p><%= @profile.bio %></p>
-        <h3>Tags go here</h3>
       </div>
-
+  
 
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl"><%= @profile.username %>'s Art</h3>
