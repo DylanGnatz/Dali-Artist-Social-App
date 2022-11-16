@@ -58,7 +58,7 @@ describe CollectivesController do
 
       get :show, params: { id: @collective3.id }
       expect(response).to redirect_to(collectives_path)
-  end
+    end
 
     it 'get show selects show template to render' do
         allow(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
@@ -75,6 +75,61 @@ describe CollectivesController do
         get :show, params: { id: @collective1.id }
         expect(assigns(:collective)).to eq(@collective1)
     end
-end
+  end
 
+  describe 'post create' do
+    it 'redirects to new collective path if no collective name given' do
+        expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+
+        post :create, params: { collective: { name: '' } }
+        expect(response).to redirect_to(new_collective_path)
+    end
+
+    it 'redirects to new collective path if no members given' do
+      expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+
+      post :create, params: { collective: { name: 'GG Boys' } }
+      expect(response).to redirect_to(new_collective_path)
+    end
+
+    it 'creates a collective given a name and members' do
+      profiles = [@profile1, @profile2, @profile4, @profile5]
+      expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+      chat4 = create(:chat, profiles: profiles)
+      collective4 = create(:collective, profiles: profiles, chat:chat4)
+      expect(Chat).to receive(:create!).and_return(chat4)
+      expect(Collective).to receive(:create!).with(name: 'GG Boys', chat_id: chat4.id).and_return(collective4)
+      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile1.id).ordered
+      expect(ChatsProfile).to receive(:create!).with(chat_id: chat4.id, profile_id: @profile1.id).ordered
+      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile2.id.to_s).ordered
+      expect(ChatsProfile).to receive(:create!).with(chat_id: chat4.id, profile_id: @profile2.id.to_s).ordered
+      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile4.id.to_s).ordered
+      expect(ChatsProfile).to receive(:create!).with(chat_id: chat4.id, profile_id: @profile4.id.to_s).ordered
+      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile5.id.to_s).ordered
+      expect(ChatsProfile).to receive(:create!).with(chat_id: chat4.id, profile_id: @profile5.id.to_s).ordered
+
+      members = {}
+      members[@profile2.id.to_i] = 1
+      members[@profile4.id.to_i] = 1
+      members[@profile5.id.to_i] = 1
+      post :create, params: { collective: { name: 'GG Boys' }, members: members }
+      expect(response).to redirect_to(collectives_path)
+    end
+    
+  end
+
+  describe 'get new' do
+    it 'shows the new collective page' do
+        expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+
+        get :new
+        expect(response).to be_successful
+    end
+    it 'selects the new template to render' do
+      expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+
+      get :new
+      expect(response).to render_template('new')
+    end
+  end
 end
