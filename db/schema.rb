@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_16_184221) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_16_230220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -132,6 +132,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_184221) do
     t.bigint "tag_id"
     t.index ["profile_id"], name: "index_profiles_tags_on_profile_id"
     t.index ["tag_id"], name: "index_profiles_tags_on_tag_id"
+  end
+
+  create_table "search_settings", force: :cascade do |t|
+    t.bigint "profile_id"
+    t.integer "search_radius"
+    t.boolean "gender_restrict"
+    t.boolean "tag_restrict"
+    t.boolean "show_events"
+    t.boolean "show_profiles"
+    t.boolean "show_collectives"
+    t.index ["profile_id"], name: "index_search_settings_on_profile_id"
   end
 
   create_table "swipes", force: :cascade do |t|
