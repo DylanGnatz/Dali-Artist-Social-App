@@ -4,15 +4,14 @@
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous">
 </script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        console.log('___________________________________')
-        getLocation()
-    });
-</script>
+
 <div>
   <% if @potential_match %>
   <h1 class="font-bold text-8xl"><%= @potential_match.username %></h1>
+    <% if not @distance.nan? %>
+      <h4 class="text-xl"> <%=@distance%> miles away!</h4>
+    <%end%>
+
 
   <br/>
   <br/>
@@ -35,5 +34,12 @@
 
   <% else %>
     <h1 class="font-bold text-4xl">You've run out of profiles in your area! Try again later</h1>
+  <% end %>
+
+  <%= button_tag  'Update Location', :onclick => "getLocation()", class: "bg-blue-400 hover:bg-blue-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+  <% if @geocoder %>
+    <h4 class="font-bold text-xl" >Current Location: <%= @geocoder.city %>, <%= @geocoder.country %> </h4>
+  <% else %>
+    <h4 class="font-bold text-xl" >Location Data Unavailable. Please Update Location </h4>
   <% end %>
 </div>
