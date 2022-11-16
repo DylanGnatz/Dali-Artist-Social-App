@@ -10,7 +10,7 @@ class SwipesController < ApplicationController
     @geocoder = @profile.get_geocoder_data
     if @potential_match
       @distance = Geocoder::Calculations.distance_between([@profile.lat, @profile.lng], [@potential_match.lat, @potential_match.lng])
-      puts @distance
+      # puts @distance
     end
   end
 

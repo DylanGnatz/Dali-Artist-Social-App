@@ -33,6 +33,7 @@ class ProfilesController < ApplicationController
     else
       profile.update(lat: request.location.latitude, lng: request.location.longitude)
     end
+    redirect_to swipes_path
   end
   
   def feed

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :collectives
   get 'profiles/index'
+  get 'profiles/show'
   get 'profiles/feed'
   get 'profiles/edit'
   put 'profiles/update'
