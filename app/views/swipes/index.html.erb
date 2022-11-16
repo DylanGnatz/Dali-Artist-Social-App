@@ -40,6 +40,7 @@
   <% if @geocoder %>
     <h4 class="font-bold text-xl" >Current Location: <%= @geocoder.city %>, <%= @geocoder.country %> </h4>
   <% else %>
-    <h4 class="font-bold text-xl" >Location Data Unavailable. Please Update Location </h4>
+    <h4 class="font-bold text-xl" >Location Data Unavailable</h4>
+    <h4 class="font-bold text-xl" >Please Update Location and refresh page </h4>
   <% end %>
 </div>
