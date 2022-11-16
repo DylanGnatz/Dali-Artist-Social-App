@@ -8,10 +8,15 @@ Feature:
       | email             | username | password |
       | dali@gmail.com    | dali     |   123456 |
       | picasso@gmail.com | picasso  |   123456 |
+    And dali is in Madrid
+    And picasso is in Madrid
+
 
   Scenario: Navigate to swipes page
     When I go to the home page
     And I log in with "dali@gmail.com" and "123456"
+    And dali is in Madrid
+    And picasso is in Madrid
     And I follow "Swipe"
     Then I should be on the swipes page
 
