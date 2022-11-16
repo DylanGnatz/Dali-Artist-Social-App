@@ -100,11 +100,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_234640) do
 
   create_table "profile_tags", force: :cascade do |t|
     t.bigint "profile_id", null: false
-    t.bigint "tags_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_profile_tags_on_profile_id"
-    t.index ["tags_id"], name: "index_profile_tags_on_tags_id"
+    t.index ["tag_id"], name: "index_profile_tags_on_tag_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -156,6 +156,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_234640) do
   add_foreign_key "events", "profiles"
   add_foreign_key "friends", "profiles"
   add_foreign_key "profile_tags", "profiles"
-  add_foreign_key "profile_tags", "tags", column: "tags_id"
+  add_foreign_key "profile_tags", "tags"
   add_foreign_key "swipes", "profiles"
 end
