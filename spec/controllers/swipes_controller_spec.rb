@@ -8,7 +8,7 @@ describe SwipesController do
 
     @profile2 = create(:user).profile
     @profile3 = create(:user).profile
-    
+
   end
   describe 'get index' do
     it 'shows all chats of a profile' do
