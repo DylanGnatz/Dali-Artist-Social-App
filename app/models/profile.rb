@@ -4,6 +4,7 @@ class Profile < ApplicationRecord
   has_many :friends
   has_many :artworks
   has_many :events
+  has_one :search_setting
   has_and_belongs_to_many :tags
   has_one_attached :profile_photo
 
