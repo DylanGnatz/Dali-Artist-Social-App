@@ -1,6 +1,6 @@
 <h1 class="font-bold text-8xl"><%= @collective.name %></h1>
 <br>
-<%= button_to  'Chat', chat_path(@collective.chat.id), :method => :get, class: "bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+<%= button_to  'Chat', chat_path(@collective.chat.id), :method => :get, class: "bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline", :id => 'collective_chat' %>
 <br>
 <h3 class="font-bold text-4xl"> Members </h1>
 <div class="flex flex-col items-stretch gap-y-1">

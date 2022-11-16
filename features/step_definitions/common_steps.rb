@@ -7,6 +7,11 @@ When /^I go to the friends page$/ do
   visit "/friends"
 end
 
+Then /^I should be on the collectives page$/ do
+  current_path = URI.parse(current_url).path
+  current_path.should == "/collectives"
+end
+
 Then /^I should be on the swipes page$/ do
   current_path = URI.parse(current_url).path
   current_path.should == "/swipes"
@@ -46,6 +51,6 @@ When /^I sign out$/ do
   visit(destroy_user_session_path)
 end
 
-
-
-
+When /^I select checkbox "(.*?)"$/ do |cb|
+  check(cb)
+end
