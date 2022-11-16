@@ -11,8 +11,8 @@
   
     <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
       <h3 class="font-bold text-4xl"><%= @profile.username %>'s Tags</h3>
-      <% @profile.profile_tags.each do |tag| %>
-        <h4>there's a tag <%= tag.tag_id %></h4>
+      <% @profile.tags.each do |tag| %>
+        <h4><%= tag.name %></h4>
       <% end%>
     </div>
 
