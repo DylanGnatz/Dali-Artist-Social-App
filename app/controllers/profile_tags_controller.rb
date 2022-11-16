@@ -12,8 +12,6 @@ class ProfileTagsController < ApplicationController
   def update
 
     profile = Profile.find_by(user_id: current_user.id)
-    puts("#######################")
-    puts(params)
     tag = Tag.find_by(id: params[:id])
     if tag and not profile.tags.exists?(id: params[:id])
       profile.tags << tag
