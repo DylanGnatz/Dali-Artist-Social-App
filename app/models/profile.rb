@@ -7,6 +7,8 @@ class Profile < ApplicationRecord
   has_many :profile_tags
   has_one_attached :profile_photo
 
+  reverse_geocoded_by :lat, :lng
+
   def all_friends
     all = []
     Profile.find(id).friends.each do |obj|
@@ -16,6 +18,14 @@ class Profile < ApplicationRecord
       all.push(frndObj.profile)
     end
     all
+  end
+
+  def get_geocoder_data
+    lat = "latitude"
+    lon = "longitude"
+    lat_lng = "#{self.lat},#{self.lng}"
+    response = Geocoder.search(lat_lng).first
+    return response
   end
 
 end
