@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_16_230220) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_17_034925) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -127,7 +127,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_230220) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "profiles_tags", id: false, force: :cascade do |t|
+  create_table "profiles_tags", force: :cascade do |t|
     t.bigint "profile_id"
     t.bigint "tag_id"
     t.index ["profile_id"], name: "index_profiles_tags_on_profile_id"
