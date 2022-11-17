@@ -70,9 +70,9 @@ describe ProfilesController do
         expect(Profile).to receive(:find_by).and_return(@profile)
         expect(@profile).to receive(:all_friends)
           .and_return([
-            double("f1", artworks: [double("art")], events: []),
-            double("f1", artworks: [], events: [double("event")]),
-            double("f1", artworks: [double("art2")], events: [double("event2")]),
+            double("f1", artworks: [double("art", created_at: 1)], events: []),
+            double("f1", artworks: [], events: [double("event", created_at: 2)]),
+            double("f1", artworks: [double("art2", created_at: 3)], events: [double("event2", created_at: 4)]),
           ])
 
         get :feed
