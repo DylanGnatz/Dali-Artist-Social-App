@@ -18,17 +18,11 @@
 ### Setup
 
 ```
-$ cd dali
 $ bundle install
-$ bin/rails db:create
-$ bin/rails db:migrate
+$ bin/rails db:reset
 ```
 
-optional:
-
-```
-$ bin/rails db:seed
-```
+(`db:reset` will run `db:drop`, `db:create`, `db:schema:load`, and `db:seed`)
 
 ### Run
 
@@ -58,9 +52,24 @@ $ bin/rails spec
 
 The generated code coverage report can be found in `/coverage/index.html`
 
+To see individual coverages for rspec and cucumber:
+
+```
+$ rm -r coverage
+```
+
 ## Deployment link
 
 https://hidden-lowlands-05634.herokuapp.com/users/sign_in
+
+On the deployed app, we recommand you to log in with these credentials:
+
+```
+Email: picasso@gmail.com
+password: 123456
+```
+
+This account will showcase most features.
 
 ## Github link
 
