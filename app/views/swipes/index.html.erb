@@ -47,7 +47,7 @@
       <% @potential_match.artworks.each do |art| %>
         <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
           <h4 class="font-bold text-2xl mb-2" > <%= art.title %> </h4>
-          <% if art.art_image%>
+          <% if art.art_image.attached? %>
             <image src = "<%=(url_for(art.art_image)) %>" class="max-h-96 mx-auto mb-1">
           <% end%>
           <% if art.link%>

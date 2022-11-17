@@ -11,7 +11,7 @@
         </div>
         <div>
           <h4 class="font-bold text-4xl mb-2" > <%= feed_item[:artwork].title %> </h4>
-          <% if feed_item[:artwork].art_image%>
+          <% if feed_item[:artwork].art_image.attached?%>
             <image src = "<%=(url_for(feed_item[:artwork].art_image)) %>" class="max-h-96 mx-auto mb-1">
           <% end%>
           <% if feed_item[:artwork].link%>
