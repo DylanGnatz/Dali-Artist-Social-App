@@ -38,13 +38,13 @@ You can create several users if you want to test the interactions. To be logged 
 
 ### Test
 
-## Cucumber
+#### Cucumber
 
 ```
 $ bundle exec cucumber
 ```
 
-## Rspec
+#### Rspec
 
 ```
 $ bin/rails spec
@@ -52,7 +52,7 @@ $ bin/rails spec
 
 The generated code coverage report can be found in `/coverage/index.html`
 
-To see individual coverages for rspec and cucumber:
+To see individual coverages for rspec and cucumber, please delete the coverage folder before:
 
 ```
 $ rm -r coverage
@@ -74,3 +74,5 @@ This account will showcase most features.
 ## Github link
 
 https://github.com/DylanGnatz/Dali-Artist-Social-App
+
+The git branches `proj-iter-1` and `proj-iter-2` contain only the code commited before the first and second deadline respectively.
