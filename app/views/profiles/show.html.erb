@@ -34,31 +34,29 @@
 
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl"><%= @profile.username %>'s Art</h3>
-        <br/>
         <% @profile.artworks.each do |art| %>
-          <li class="list-none mb-3">
-            <h4 class="font-bold text-xl" > <%= art.title %> </h4>
-            <% if art.link%>
-              <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600"%>
-            <% end%>
+          <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
+            <h4 class="font-bold text-2xl mb-2" > <%= art.title %> </h4>
             <% if art.art_image%>
-              <image src = "<%=(url_for(art.art_image)) %>">
+              <image src = "<%=(url_for(art.art_image)) %>" class="max-h-96 mx-auto mb-1">
             <% end%>
-            <p> <%= art.description %> </p>
+            <% if art.link%>
+              <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600 mb-1"%>
+            <% end%>
+            <p class="whitespace-pre-wrap"> <%= art.description %> </p>
           </li>
         <% end%>
       </div>
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl"><%= @profile.username %>'s Events</h3>
-        <br/>
         <% @profile.events.each do |event| %>
-          <li class="list-none mb-3">
-            <h4 class="font-bold text-xl" > <%= event.title %> </h4>
+          <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
+            <h4 class="font-bold text-2xl mb-2" > <%= event.title %> </h4>
             <% if event.date%>
-              <p> Date : <%= event.date.strftime('%F') %> </p>
+              <p class="mb-1"> <b>📆 Date:</b> <%= event.date.strftime('%F') %> </p>
             <% end%>
             <% if !event.location.blank? %>
-              <p> Location : <%= event.location %> </p>
+              <p> <b>📍 Location:</b> <%= event.location %> </p>
             <% end%>
           </li>
         <% end%>

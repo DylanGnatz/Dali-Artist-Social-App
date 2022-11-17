@@ -10,7 +10,7 @@ Scenario: adding tags and media to account
   When I go to the edit page for my account
   And I fill in "Media" with "TEXT FOR TEST"
   And I select "Painter" for Tags
-  And I press "Update Profile Info"
+  And I press "Save profile"
   Then I should be on the view page
   And I should see "TEXT FOR TEST"
   And I should see Tags contains Painter

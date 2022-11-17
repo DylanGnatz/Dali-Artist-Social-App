@@ -1,24 +1,23 @@
 <h1 class="font-bold text-8xl"> New Collective </h1>
 
 <br/>
-<br/>
 
 <%= form_tag collectives_path, :method => :post do %>
     <div class="flex flex-col items-stretch gap-2">
         <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
-          <h3 class="font-bold text-4xl">Collective Name</h3>
-          <br/>
-          <%= text_field :collective, 'name' %>
+          <h3 class="font-bold text-4xl mb-3">Collective Name</h3>
+          <%= text_field :collective, 'name', class: "bg-blue-100 text-blue-900 rounded" %>
         </div>
         <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
-          <h3 class="font-bold text-4xl">Members</h3>
-          <br/>
-          <% @friends.each do |friend| %>
-            <div class="form-check  form-check-inline">
-                <%= label_tag "members[#{friend.username}]", friend.username %>
-                <%= check_box_tag "members[#{friend.id}]", '1', false, :id => friend.username %>
-            </div>
-          <% end %>
+          <h3 class="font-bold text-4xl mb-3">Members</h3>
+          <div class="flex flex-col gap-2">
+            <% @friends.each do |friend| %>
+              <div class="form-check  form-check-inline">
+                  <%= check_box_tag "members[#{friend.id}]", '1', false, :id => friend.username, class: "bg-blue-100 text-blue-900 rounded mr-3" %>
+                  <%= label_tag "members[#{friend.username}]", friend.username, class: "text-xl" %>
+              </div>
+            <% end %>
+          </div>
         </div>
         <div class="flex flex-row">
           <%= submit_tag 'Create Collective', class:"text-amber-900 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>

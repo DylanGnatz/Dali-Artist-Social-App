@@ -1,7 +1,6 @@
 <h1 class="font-bold text-8xl"> Chats </h1>
 
 <br/>
-<br/>
 
 <div class="flex flex-col items-stretch gap-y-1">
   <% @chats.each do |chat| %>
@@ -9,18 +8,17 @@
         class: "text-2xl font-bold p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex justify-between items-center hover:bg-orange-200" %>
   <% end %>
 </div>
-<br/>
+
 <br/>
 
 <% if @collective_chats.length > 0 %>
-<h1 class="font-bold text-4xl"> Collective Chats </h1>
-<div class="flex flex-col items-stretch gap-y-1">
-  <% @collective_chats.each do |chat| %>
-      <%= link_to chat[:name], chat_path(chat[:id]),
-        class: "text-2xl font-bold p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex justify-between items-center hover:bg-orange-200" %>
-  <% end %>
-</div>
-<br/>
-<br/>
+  <h1 class="font-bold text-4xl mb-3"> Collective Chats </h1>
+  <div class="flex flex-col items-stretch gap-y-1">
+    <% @collective_chats.each do |chat| %>
+        <%= link_to chat[:name], chat_path(chat[:id]),
+          class: "text-2xl font-bold p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex justify-between items-center hover:bg-orange-200" %>
+    <% end %>
+  </div>
+  <br/>
 <% end %>
-  <%= link_to "New Chat", friends_path, class: "bg-rose-400 hover:bg-rose-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline w-40 mx-auto"%>
+<%= link_to "New Chat", friends_path, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer"%>

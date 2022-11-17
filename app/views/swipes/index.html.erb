@@ -1,64 +1,81 @@
 <%= javascript_include_tag('location.js') %>
-<script   src="https://code.jquery.com/jquery-3.6.1.min.js"
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous">
 </script>
 
-  <% if @potential_match %>
+<% if @potential_match %>
   <h1 class="font-bold text-8xl"><%= @potential_match.username %></h1>
-    <br/>
-    <% if not @distance.nan? %>
-      <h4 class="text-xl"> <%=@distance%> miles away!</h4>
-    <%end%>
+
+  <br/>
+  
+  <% if not @distance.nan? %>
+    <h4 class="text-xl"> <%=@distance%> miles away!</h4>
+  <%end%>
 
   <br/>
 
-  <div class="flex flex-col items-stretch">
-    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-      <% if @potential_match.profile_photo.attached? %>
-        <image src = "<%=(url_for(@potential_match.profile_photo)) %>">
-      <% end%>
+  <% if @potential_match.profile_photo.attached? %>
+    <image src = "<%=(url_for(@potential_match.profile_photo)) %>" class="max-h-96 mx-auto rounded-full">
+    <br/>
+  <% end%>
 
-      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-        <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Tags</h3>
+
+  <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+    <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Tags</h3>
+    <br/>
+    <div class="flex flex-wrap gap-2">
         <% @potential_match.tags.each do |tag| %>
-          <h4><%= tag.name %></h4>
+          <span id="badge-dismiss-default" class="inline-flex items-center py-1 px-2 text-sm font-medium text-blue-900 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-900">
+            <%= tag.name %>
+          </span>
         <% end%>
       </div>
+  </div>
 
+  <br/>
+  <div class="flex flex-col items-stretch gap-y-4">
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+      <h3 class="font-bold text-4xl">About <%= @potential_match.username %></h3>
       <br/>
-      <div class="flex flex-col items-stretch gap-y-4">
-        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-          <h3 class="font-bold text-4xl">About <%= @potential_match.username %></h3>
-          <br/>
-          <div class="max-h-64 overflow-auto">
-            <p class="whitespace-pre-wrap"><%= @potential_match.bio %></p>
-          </div>
-        </div>
+      <p class="whitespace-pre-wrap"><%= @potential_match.bio %></p>
+    </div>
 
 
-        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-          <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Art</h3>
-          <br/>
-          <% @potential_match.artworks.each do |art| %>
-            <li class="list-none mb-3">
-              <h4 class="font-bold text-xl" > <%= art.title %> </h4>
-              <% if art.link%>
-                <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600"%>
-              <% end%>
-              <% if art.art_image%>
-                <image src = "<%=(url_for(art.art_image)) %>">
-              <% end%>
-              <p> <%= art.description %> </p>
-            </li>
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+      <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Art</h3>
+      <% @potential_match.artworks.each do |art| %>
+        <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
+          <h4 class="font-bold text-2xl mb-2" > <%= art.title %> </h4>
+          <% if art.art_image%>
+            <image src = "<%=(url_for(art.art_image)) %>" class="max-h-96 mx-auto mb-1">
           <% end%>
-        </div>
+          <% if art.link%>
+            <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600 mb-1"%>
+          <% end%>
+          <p class="whitespace-pre-wrap"> <%= art.description %> </p>
+        </li>
+      <% end%>
+    </div>
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+      <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Events</h3>
+      <% @potential_match.events.each do |event| %>
+        <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
+          <h4 class="font-bold text-2xl mb-2" > <%= event.title %> </h4>
+          <% if event.date%>
+            <p class="mb-1"> <b>📆 Date:</b> <%= event.date.strftime('%F') %> </p>
+          <% end%>
+          <% if !event.location.blank? %>
+            <p> <b>📍 Location:</b> <%= event.location %> </p>
+          <% end%>
+        </li>
+      <% end%>
     </div>
   </div>
 
   <br/>
 
-  <div class="flex gap-x-3 items-stretch justify-between">
+  <div class="flex mx-3 items-stretch justify-between sticky bottom-5">
     <%= button_to  'Interested 👍', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline" %>
     <%= button_to  'Not interested 👎', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline" %>
   </div>
@@ -69,12 +86,12 @@
 
   <br/>
 
-  <%= button_tag  'Update Location 📍', :onclick => "getLocation()", class: "bg-blue-400 hover:bg-blue-500 font-bold py-2 px-4 mb-2 rounded text-center focus:outline-none focus:shadow-outline" %>
+  <%= button_tag  'Update Location 📍', :onclick => "getLocation()", class: "bg-blue-400 hover:bg-blue-500 font-bold py-2 px-4 mb-2 mx-3 rounded text-center focus:outline-none focus:shadow-outline" %>
 
   <% if @geocoder %>
     <h4 class="text-xl" > <b>Current Location: </b> <%= @geocoder.city %>, <%= @geocoder.country %> </h4>
   <% else %>
     <h4 class="font-bold text-xl" >Location Data Unavailable</h4>
-    <h4 class="font-bold text-xl" >Please Update Location and refresh page </h4>
+    <h4 class="font-bold text-xl" >Please click Update Location and refresh the page </h4>
   <% end %>
 </div>
