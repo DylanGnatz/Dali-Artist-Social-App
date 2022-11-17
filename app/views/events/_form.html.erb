@@ -13,30 +13,27 @@
 
   <div class="flex flex-col gap-y-3">
     <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
-      <h3 class="font-bold text-4xl">Title</h3>
-      <br/>
+      <h3 class="font-bold text-4xl mb-3">Title</h3>
       <%= label :event, :title, 'Title', class: "invisible absolute" %>
-      <%= text_field :event, 'title' %>
+      <%= text_field :event, 'title', class: "bg-blue-100 text-blue-900 rounded" %>
     </div>
     <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
-      <h3 class="font-bold text-4xl mr-auto">Date</h3>
-      <br/>
+      <h3 class="font-bold text-4xl mr-auto mb-3">Date</h3>
       <div>
         <%= label :event, :date, 'Date', class: "invisible absolute" %>
-        <%= date_select :event, :date, start_year: Date.current.year, include_blank: true %>
+        <%= date_select :event, :date, start_year: Date.current.year, include_blank: true, with_css_classes: {day: "bg-blue-100 text-blue-900 rounded", month: "bg-blue-100 text-blue-900 rounded", year: "bg-blue-100 text-blue-900 rounded"} %>
       </div>
     </div>
     <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
-      <h3 class="font-bold text-4xl">Location</h3>
-      <br/>
+      <h3 class="font-bold text-4xl mb-3">Location</h3>
       <%= label :event, :location, 'Location', class: "invisible absolute" %>
-      <%= text_field :event, 'location' %>
+      <%= text_field :event, 'location', class: "bg-blue-100 text-blue-900 rounded" %>
     </div>
   </div>
 
   <br/>
   
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "text-amber-900 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
   </div>
 <% end %>

@@ -1,17 +1,23 @@
 <h1 class="font-bold text-8xl"> My Feed </h1>
 
 <br/>
-<br/>
 
-<div class="flex flex-col items-stretch gap-y-1">
+<div class="flex flex-col items-stretch gap-y-5">
   <% @feed_items.each do |feed_item| %>
     <% if feed_item[:type] == :artwork %>
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
         <div class="font-bold text-gray-500">
             <%= feed_item[:artwork].profile.username %> added new artwork
         </div>
-        <div class="font-bold text-2xl">
-            <%= feed_item[:artwork].title %>
+        <div>
+          <h4 class="font-bold text-4xl mb-2" > <%= feed_item[:artwork].title %> </h4>
+          <% if feed_item[:artwork].art_image%>
+            <image src = "<%=(url_for(feed_item[:artwork].art_image)) %>" class="max-h-96 mx-auto mb-1">
+          <% end%>
+          <% if feed_item[:artwork].link%>
+            <%= link_to nil, feed_item[:artwork].link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600 mb-1"%>
+          <% end%>
+          <p class="whitespace-pre-wrap"> <%= feed_item[:artwork].description %> </p>
         </div>
       </div>
     <% end %>
@@ -20,8 +26,14 @@
         <div class="font-bold text-gray-500">
             <%= feed_item[:event].profile.username %> added new event
         </div>
-        <div class="font-bold text-2xl">
-            <%= feed_item[:event].title %>
+        <div>
+          <h4 class="font-bold text-4xl mb-2" > <%= feed_item[:event].title %> </h4>
+          <% if feed_item[:event].date%>
+            <p class="mb-1"> <b>📆 Date:</b> <%= feed_item[:event].date.strftime('%F') %> </p>
+          <% end%>
+          <% if !feed_item[:event].location.blank? %>
+            <p> <b>📍 Location:</b> <%= feed_item[:event].location %> </p>
+          <% end%>
         </div>
       </div>
     <% end %>

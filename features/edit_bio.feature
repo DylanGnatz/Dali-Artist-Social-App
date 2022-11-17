@@ -14,6 +14,6 @@ Feature: Users can add a short text bio to their profile to describe themselves
   Scenario: Edit bio
     When I follow "Edit Profile"
     And I fill in "Bio" with "Hi, I am an artist"
-    And I click the "Update Profile Info" button
+    And I click the "Save profile" button
     When I follow "View Public Profile"
     Then I should see "Hi, I am an artist"

@@ -24,13 +24,13 @@
       <div class="flex items-start">
         <% if current_user %>
           <div class="flex flex-col gap-y-3 items-stretch mr-10 ml-2 sticky top-3">
-            <%= link_to "Profile", profiles_index_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
-            <%= link_to "Swipe", swipes_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
-            <%= link_to "Feed", profiles_feed_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
-            <%= link_to "Matches", friends_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
-            <%= link_to "Chat", chats_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
-            <%= link_to "Collectives", collectives_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
-            <%= link_to "Sign out", destroy_user_session_path, :method => :get, class: "bg-red-600 hover:bg-red-700 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+            <%= link_to "Profile", profiles_index_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 border-2 border-amber-900 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+            <%= link_to "Swipe", swipes_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 border-2 border-amber-900 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+            <%= link_to "Feed", profiles_feed_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 border-2 border-amber-900 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+            <%= link_to "Matches", friends_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 border-2 border-amber-900 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+            <%= link_to "Chat", chats_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 border-2 border-amber-900 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+            <%= link_to "Collectives", collectives_path, :method => :get, class: "text-amber-900 bg-amber-500 hover:bg-amber-600 border-2 border-amber-900 font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :get, class: "bg-red-400 hover:bg-red-500 border-2 border-black font-bold py-2 px-4 rounded-full text-center focus:outline-none focus:shadow-outline" %>
           </div>
         <% end %>
         <div class="grow">

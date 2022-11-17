@@ -3,11 +3,11 @@
 <br/>
 <br/>
 
-<div class="flex flex-col gap-y-1">
+<div class="flex flex-col gap-y-1 max-w-2xl mx-auto">
   <% @messages.each do |message| %>
 
     <% if message[:from_profile] %>
-      <div class="ml-auto p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+      <div class="ml-auto p-3 border-2 border-sky-700 rounded-3xl rounded-br-none bg-sky-100 flex flex-col">
           <div class="text-xl">
             <%= message[:msg] %>
           </div>       
@@ -17,7 +17,7 @@
       </div>
     <% end %>
     <% if !message[:from_profile] %>
-      <div class="mr-auto p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+      <div class="mr-auto p-3 border-2 border-amber-700 rounded-3xl rounded-bl-none bg-orange-100 flex flex-col">
           <div class="text-xl">
             <%= message[:msg] %>
           </div>       
@@ -28,12 +28,11 @@
     <% end%>
 
   <% end %>
+
+  <br />
+
+  <%= form_tag chats_messages_path(chat_id: @chat.id), :class => 'form-horizontal' do %>
+      <%= text_field :chats_message, :msg, :class => 'form-control bg-blue-100 text-blue-900 rounded w-3/4' %>
+      <%= submit_tag 'Send', :class => 'bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer' %>
+  <% end %>
 </div>
-
-<br />
-<br />
-
-<%= form_tag chats_messages_path(chat_id: @chat.id), :class => 'form-horizontal' do %>
-    <%= text_field :chats_message, :msg, :class => 'form-control' %>
-    <%= submit_tag 'Send', :class => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
-<% end %>
