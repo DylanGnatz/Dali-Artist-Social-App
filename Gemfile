@@ -93,3 +93,5 @@ gem 'devise-tailwinded'
 gem 'simplecov', require: false, group: :test
 
 gem "rspec-rails", group: [:development, :test]
+
+gem "aws-sdk-s3", require: false
