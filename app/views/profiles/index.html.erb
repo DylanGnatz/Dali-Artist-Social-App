@@ -5,7 +5,7 @@
 
   <div class="grid grid-cols-2 gap-4">
     <%= link_to  '👀 View Public Profile', profiles_path(@profile.id), :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline text-2xl" %>
-    <%= link_to  '✏ Edit Profile', profiles_edit_path, :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline text-2xl" %>
+    <%= link_to  '🖊 Edit Profile', profiles_edit_path, :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline text-2xl" %>
     <%= link_to  '🎨 Add Artwork', new_artwork_path, :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline text-2xl" %>
     <%= link_to  '🎉 Add Event', new_event_path, :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline text-2xl" %>
   </div>
