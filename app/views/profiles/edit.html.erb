@@ -12,7 +12,7 @@
             <h3 class="font-bold text-4xl">Change Profile Photo</h3>
             <br/>
             <% if @profile.profile_photo.attached? %>
-              <image src = "<%=(url_for(@profile.profile_photo)) %>" class="max-h-96 mx-auto rounded-full">
+              <image src = "<%=(url_for(@profile.profile_photo)) %>" class="h-96 mx-auto rounded-full">
             <% end%>
             <br/>
             <%= file_field_tag :profile_photo %>
