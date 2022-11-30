@@ -4,17 +4,9 @@
   <br/>
 
   <div class="grid grid-cols-2 gap-4">
-    <span class=" h-40 bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-2xl flex justify-center items-center text-center">
-    <%= link_to  '👀 View Public Profile', profiles_path(@profile.id), :method => :get %>
-    </span>
-    <span class=" h-40 bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-2xl flex justify-center items-center text-center">
-    <%= link_to  '🖊 Edit Profile', profiles_edit_path, :method => :get %>
-    </span>
-    <span class=" h-40 bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-2xl flex justify-center items-center text-center">
-    <%= link_to  '🎨 Add Artwork', new_artwork_path, :method => :get %>
-    </span>
-    <span class=" h-40 bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-2xl flex justify-center items-center text-center">
-    <%= link_to  '🎉 Add Event', new_event_path, :method => :get %>
-    </span>
+    <%= button_to  '👀 View Public Profile', profiles_path(@profile.id), :method => :get, class: "h-40 bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold w-full py-2 px-4 rounded focus:outline-none focus:shadow-outline text-2xl" %>
+    <%= button_to  '🖊 Edit Profile', profiles_edit_path, :method => :get, class: "h-40 bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold w-full py-2 px-4 rounded focus:outline-none focus:shadow-outline text-2xl" %>
+    <%= button_to  '🎨 Add Artwork', new_artwork_path, :method => :get, class: "h-40 bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold w-full py-2 px-4 rounded focus:outline-none focus:shadow-outline text-2xl" %>
+    <%= button_to  '🎉 Add Event', new_event_path, :method => :get, class: "h-40 bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold w-full py-2 px-4 rounded focus:outline-none focus:shadow-outline text-2xl" %>
   </div>
 </div>

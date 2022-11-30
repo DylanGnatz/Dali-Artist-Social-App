@@ -13,5 +13,5 @@ Feature: Expand profile view and showcase another users profile
     When I go to the home page
     And I log in with "dali@gmail.com" and "123456"
     Then I should successfully sign in
-    When I follow "View Public Profile"
+    When I click the "View Public Profile" button
     Then I should see "dali"

@@ -12,8 +12,8 @@ Feature: Users can add a short text bio to their profile to describe themselves
     And I log in with "picasso@gmail.com" and "123456"
 
   Scenario: Edit bio
-    When I follow "Edit Profile"
+    When I click the "Edit Profile" button
     And I fill in "Bio" with "Hi, I am an artist"
     And I click the "Save profile" button
-    When I follow "View Public Profile"
+    When I click the "View Public Profile" button
     Then I should see "Hi, I am an artist"
