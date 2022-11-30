@@ -1,0 +1,82 @@
+<div class="flex flex-col gap-y-3">
+    <h1 class="font-bold text-8xl"> Edit Collective </h1>
+
+
+    <h3 class="font-bold text-6xl"><%= @collective.name %></h3>
+
+    <%= button_to 'Delete', collective_path(@collective), method: :delete, class:"bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline"%>
+
+    <div class="flex flex-col items-stretch gap-2">
+        <%= form_tag collective_path(@collective), :method => :put, multipart: true do %>
+        <div class="flex flex-col items-stretch gap-2">
+            <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
+            <h3 class="font-bold text-4xl">Change Profile Photo</h3>
+            <br/>
+            <% if @collective.main_photo.attached? %>
+                <image src = "<%=(url_for(@collective.main_photo)) %>" class="h-96 mx-auto rounded-full">
+            <% end%>
+            <br/>
+            <%= file_field_tag :main_photo %>
+            </div>
+
+            <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
+            <h3 class="font-bold text-4xl">Edit Name</h3>
+            <br/>
+            <%= label :collective, :name, 'Name', class: "invisible absolute" %>
+            <%= text_field :collective, 'name', rows: 5, class: "bg-blue-100 text-blue-900 rounded" %>
+            </div>
+
+
+            <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col items-stretch">
+            <h3 class="font-bold text-4xl">Edit Bio</h3>
+            <br/>
+            <%= label :collective, :bio, 'Bio', class: "invisible absolute" %>
+            <%= text_area :collective, 'bio', rows: 5, class: "bg-blue-100 text-blue-900 rounded" %>
+            </div>
+
+            <div class="flex flex-row sticky bottom-5 ml-3">
+            <%= submit_tag 'Save profile', class:"bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+            <%= link_to 'Cancel', profiles_index_path, class:"bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"%>
+            </div>
+        </div>
+        <% end %>
+
+        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl">Edit Artworks</h3>
+        <% @collective.collective_artworks.each do |art| %>
+            <li class="list-none flex justify-between items-center bg-blue-100 rounded mt-5 p-3 border-2 border-blue-700">
+            <h4 class="font-bold text-xl text-blue-900" > <%= art.title %> </h4>
+            <%= button_to 'Delete', delete_collective_artworks_path(artId: art.id), method: :delete, class:"bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline"%>
+            </li>
+        <% end%>
+        </div>
+
+        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl">Edit Members</h3>
+        <% @collective.profiles.each do |profile| %>
+            <li class="list-none flex justify-between items-center bg-blue-100 rounded mt-5 p-3 border-2 border-blue-700">
+            <h4 class="font-bold text-xl text-blue-900" > <%= profile.username %> </h4>
+            <%= button_to 'Delete', delete_collective_profiles_path(memberId: profile.id), method: :delete, class:"bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline"%>
+            </li>
+        <% end%>
+        </div>
+
+        <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl">Add Members</h3>
+        <%= form_tag add_collective_profiles_path, :method => :post do %>
+            <div class="flex flex-col gap-2">
+              <% @addable_friends.each do |friend| %>
+                <div class="form-check  form-check-inline">
+                    <%= check_box_tag "members[#{friend.id}]", '1', false, :id => friend.username, class: "bg-blue-100 text-blue-900 rounded mr-3" %>
+                    <%= label_tag "members[#{friend.username}]", friend.username, class: "text-xl" %>
+                </div>
+              <% end %>
+              <div class="flex flex-row">
+              <%= submit_tag 'Add', class:"text-amber-900 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+            </div>
+          </div>
+        <% end %>
+        </div>
+
+    </div>
+</div>

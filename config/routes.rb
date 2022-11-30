@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   resources :collectives
+  get '/collectives/:id/artwork', to: 'collective_artworks#new', as: 'new_collective_artworks'
+  post '/collectives/:id/artwork', to: 'collective_artworks#create', as: 'create_collective_artworks'
+  delete '/collectives/:id/artwork/:artId', to: 'collective_artworks#destroy', as: 'delete_collective_artworks'
+  delete '/collectives/:id/member/:memberId', to: 'collectives_profiles#destroy', as: 'delete_collective_profiles'
+  post '/collectives/:id/members/add', to: 'collectives_profiles#add', as: 'add_collective_profiles'
   get 'profiles/index'
   get 'profiles/show'
   get 'profiles/feed'
