@@ -3,7 +3,7 @@
     <h1 class="font-bold text-8xl"> Edit Profile </h1>
 
 
-    <h3 class="font-bold text-6xl"><%= @profile.username %></h3>
+    <h3 class="font-bold text-6xl first-letter:text-rose-500"><%= @profile.username %></h3>
 
     <div class="flex flex-col items-stretch gap-2">
       <%= form_tag profiles_update_path(@profile), :method => :put, multipart: true do %>
