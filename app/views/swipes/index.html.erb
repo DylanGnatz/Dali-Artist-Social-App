@@ -75,9 +75,9 @@
 
   <br/>
 
-  <div class="flex mx-3 items-stretch justify-between sticky bottom-5">
-    <%= button_to  'Interested 👍', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline" %>
-    <%= button_to  'Not interested 👎', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline" %>
+  <div class="flex mx-3 items-stretch justify-between sticky bottom-5 text-3xl">
+    <%= button_to  'Interested 👍', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
+    <%= button_to  'Not interested 👎', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
   </div>
 
   <% else %>
