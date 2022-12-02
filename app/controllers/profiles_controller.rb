@@ -6,7 +6,6 @@ class ProfilesController < ApplicationController
   def edit
     @profile = Profile.find_by(user_id: current_user.id)
     @available_tags = Tag.where.not(id: @profile.tags).order('name')
-
   end
 
   def update

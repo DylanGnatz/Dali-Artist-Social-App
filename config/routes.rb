@@ -6,12 +6,11 @@ Rails.application.routes.draw do
   delete '/collectives/:id/member/:memberId', to: 'collectives_profiles#destroy', as: 'delete_collective_profiles'
   post '/collectives/:id/members/add', to: 'collectives_profiles#add', as: 'add_collective_profiles'
   get 'profiles/index'
-  get 'profiles/index'
   get 'profiles/feed'
   get 'profiles/edit'
   put 'profiles/update'
   put 'profile_tags/update'
-  get '/profiles/:id', to: 'profiles#index', as: 'profiles'
+  get '/profiles/:id', to: 'profiles#show', as: 'profiles'
   get "/location" => "profiles#location"
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
