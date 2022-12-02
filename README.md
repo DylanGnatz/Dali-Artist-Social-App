@@ -22,6 +22,12 @@ $ bundle install
 $ bin/rails db:reset
 ```
 
+If the css is not loaded, or you have some errors mentioning tailwind, you might have to run:
+
+```
+$ bundle exec rake assets:precompile
+```
+
 (`db:reset` will run `db:drop`, `db:create`, `db:schema:load`, and `db:seed`)
 
 ### Run
