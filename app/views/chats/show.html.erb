@@ -10,30 +10,32 @@
 <br/>
 
 <div class="flex flex-col gap-y-1 max-w-2xl mx-auto">
-  <% @messages.each do |message| %>
+  <div class="flex flex-col-reverse gap-y-1 h-[50vh] overflow-auto border-2 border-orange-200 p-3 rounded">
+    <% @messages.reverse.each do |message| %>
 
-    <% if message[:from_profile] %>
-      <div class="ml-auto p-3 border-2 border-sky-700 rounded-3xl rounded-br-none bg-sky-100 flex flex-col">
-          <div class="text-xl">
-            <%= message[:msg] %>
-          </div>       
-          <div class="text-sm">
-            (Me)
-          </div>
-      </div>
+      <% if message[:from_profile] %>
+        <div class="ml-auto p-3 border-2 border-sky-700 rounded-3xl rounded-br-none bg-sky-100 flex flex-col">
+            <div class="text-xl">
+              <%= message[:msg] %>
+            </div>       
+            <div class="text-sm">
+              (Me)
+            </div>
+        </div>
+      <% end %>
+      <% if !message[:from_profile] %>
+        <div class="mr-auto p-3 border-2 border-amber-700 rounded-3xl rounded-bl-none bg-orange-100 flex flex-col">
+            <div class="text-xl">
+              <%= message[:msg] %>
+            </div>       
+            <div class="text-sm">
+              (<%= message[:sender] %>)   
+            </div>
+        </div>
+      <% end%>
+
     <% end %>
-    <% if !message[:from_profile] %>
-      <div class="mr-auto p-3 border-2 border-amber-700 rounded-3xl rounded-bl-none bg-orange-100 flex flex-col">
-          <div class="text-xl">
-            <%= message[:msg] %>
-          </div>       
-          <div class="text-sm">
-            (<%= message[:sender] %>)   
-          </div>
-      </div>
-    <% end%>
-
-  <% end %>
+  </div>
 
   <br />
 
