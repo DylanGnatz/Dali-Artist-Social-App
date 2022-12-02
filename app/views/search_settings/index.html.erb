@@ -3,26 +3,26 @@
 
   <br/>
   <%= form_with url: "/edit", method: :get do |form| %>
-    <h4 class="text-xl"> Search Radius</h4>
-    <%= form.number_field :search_radius, in: 10.0..200.0, step: 5.0 %>
+    <h4 class="text-xl"> Search Radius (Miles)</h4>
+    <%= form.number_field :search_radius, in: 10.0..200.0, step: 5.0, value: @search_setting.search_radius %>
     <h4 class="text-xl"> Restrict search to users of the same gender identity?</h4>
-    <%= form.radio_button :gender_restrict, "True" %>
+    <%= form.radio_button :gender_restrict, true, checked: @search_setting.gender_restrict %>
     <%= form.label :gender_restrict, "Yes" %>
-    <%= form.radio_button :gender_restrict, "False" %>
+    <%= form.radio_button :gender_restrict, false, checked: @search_setting.gender_restrict == false%>
     <%= form.label :gender_restrict, "No" %>
 
     <h4 class="text-xl"> Restrict search to users with the same profile tags?</h4>
-    <%= form.radio_button :tag_restrict, "True" %>
+    <%= form.radio_button :tag_restrict, true, checked: @search_setting.tag_restrict %>
     <%= form.label :tag_restrict, "Yes" %>
-    <%= form.radio_button :tag_restrict, "False" %>
+    <%= form.radio_button :tag_restrict, false, checked: @search_setting.tag_restrict == false %>
     <%= form.label :tag_restrict, "No" %>
 
     <h4 class="text-xl"> Which would you like to appear in your search?</h4>
-    <%= form.check_box :show_profiles %>
+    <%= form.check_box :show_profiles, checked: @search_setting.show_profiles%>
     <%= form.label :show_profiles, "Profiles" %>
-    <%= form.check_box :show_events %>
+    <%= form.check_box :show_events, checked: @search_setting.show_events %>
     <%= form.label :show_events, "Events" %>
-    <%= form.check_box :show_collectives %>
+    <%= form.check_box :show_collectives, checked: @search_setting.show_collectives %>
     <%= form.label :show_collectives, "Collectives" %>
     <br>
     <%= submit_tag 'Save', class:"bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
