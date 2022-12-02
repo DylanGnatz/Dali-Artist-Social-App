@@ -3,7 +3,7 @@
 
   <br/>
   <%= form_with url: "/edit", method: :get do |form| %>
-    <h4 class="text-xl"> Search Radius (Miles)</h4>
+    <h4 class="text-xl"> Search Radius (miles)</h4>
     <%= form.number_field :search_radius, in: 10.0..200.0, step: 5.0, value: @search_setting.search_radius %>
     <h4 class="text-xl"> Restrict search to users of the same gender identity?</h4>
     <%= form.radio_button :gender_restrict, true, checked: @search_setting.gender_restrict %>
