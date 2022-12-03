@@ -41,10 +41,16 @@ class Profile < ApplicationRecord
       end
     end
     if self.search_setting.show_events
-      queue.push(Event.order("RANDOM()").first)
+      event = Event.order("RANDOM()").first
+      unless event.nil?
+        queue.push(event)
+      end
     end
     if self.search_setting.show_collectives
-      queue.push(Collective.order("RANDOM()").first)
+      collective = Collective.order("RANDOM()").first
+      unless collective.nil?
+        queue.push(collective)
+      end
     end
     return queue.sample
   end
