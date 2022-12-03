@@ -22,15 +22,19 @@ class SwipesController < ApplicationController
     swiped_id = params[:profile_id]
     interested = params[:interested]
     @profile = Profile.find_by(user_id: current_user.id)
-
-    @swipe = Swipe.create!(:profile_id => @profile.id, :swiped_id => swiped_id, :interested => interested, :swipe_time => Time.now())
-
-    @check_match = Swipe.match(@profile.id, swiped_id)
-
+    if params[:class] == 'Profile'
+      @swipe = Swipe.create!(:profile_id => @profile.id, :swiped_id => swiped_id, :interested => interested, :swipe_time => Time.now())
+      @check_match = Swipe.match(@profile.id, swiped_id)
+    elsif params[:class] == 'Event'
+      @swipe = Swipe.create!(:profile_id => @profile.id, :event_id => swiped_id, :interested => interested, :swipe_time => Time.now())
+    elsif params[:class] == 'Collective'
+      @swipe = Swipe.create!(:profile_id => @profile.id, :collective_id => swiped_id, :interested => interested, :swipe_time => Time.now())
+    end
 
 
     if @check_match
-      flash[:notice] = "You just matched with '#{params[:username]}'!"
+      username = Profile.where(id: swiped_id).pluck(:username)
+      flash[:notice] = "You just matched with '#{username}'!"
     end
     redirect_to swipes_path
 
