@@ -37,8 +37,12 @@ class Profile < ApplicationRecord
       already_swiped_prof = Swipe.where(profile_id: self.id).pluck(:swiped_id)
       #Do not show own profile
       already_swiped_prof.push(self.id)
-
-      prof = Profile.near([self.lat, self.lng], self.search_setting.search_radius).where.not(id: already_swiped_prof).order("RANDOM()").first
+      if self.search_setting.tag_restrict
+        #prof = Profile.near([self.lat, self.lng], self.search_setting.search_radius).where(tags: self.tags).where.not(id: already_swiped_prof).order("RANDOM()").first
+        prof = Profile.near([self.lat, self.lng], self.search_setting.search_radius).where.not(id: already_swiped_prof).order("RANDOM()").first
+      else
+        prof = Profile.near([self.lat, self.lng], self.search_setting.search_radius).where.not(id: already_swiped_prof).order("RANDOM()").first
+      end
       unless prof.nil?
         queue.push(prof)
       end

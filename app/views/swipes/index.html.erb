@@ -84,10 +84,14 @@
       <% if @potential_match.date%>
         <p class="mb-1"> <b>📆 Date:</b> <%= @potential_match.date.strftime('%F') %> </p>
       <% end%>
-      <% if @potential_match.location.blank? %>
+      <% if @potential_match.location?%>
         <p> <b>📍 Location:</b> <%= @potential_match.location %> </p>
       <% end%>
     <% elsif @potential_match.instance_of? Collective %>
+      <% if @potential_match.main_photo.attached? %>
+        <image src = "<%=(url_for(@potential_match.main_photo)) %>" class="h-96 mx-auto rounded-full">
+          <br/>
+      <% end%>
       <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
         <h3 class="font-bold text-4xl">About <%= @potential_match.name %></h3>
         <br/>
