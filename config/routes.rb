@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'profiles/feed'
   get 'profiles/edit'
   put 'profiles/update'
+  put 'search_settings/update'
   put 'profile_tags/update'
   get '/profiles/:id', to: 'profiles#show', as: 'profiles'
   get "/location" => "profiles#location"
