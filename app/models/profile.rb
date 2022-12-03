@@ -30,4 +30,22 @@ class Profile < ApplicationRecord
     return response
   end
 
+  def match_queue
+    queue = []
+    if self.search_setting.show_profiles
+      already_swiped = Swipe.where(profile_id: self.id).pluck(:swiped_id)
+      prof = Profile.near([self.lat, self.lng], self.search_setting.search_radius).where.not(id: already_swiped).order("RANDOM()").first
+      unless prof.nil?
+        queue.push(prof)
+      end
+    end
+    if self.search_setting.show_events
+      queue.push(Event.order("RANDOM()").first)
+    end
+    if self.search_setting.show_collectives
+      queue.push(Collective.order("RANDOM()").first)
+    end
+    return queue.sample
+  end
+
 end
