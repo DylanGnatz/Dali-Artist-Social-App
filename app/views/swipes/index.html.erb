@@ -77,10 +77,7 @@
 
     <br/>
 
-    <div class="flex mx-3 items-stretch justify-between sticky bottom-5 text-3xl">
-      <%= button_to  'Interested 👍', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
-      <%= button_to  'Not interested 👎', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
-    </div>
+
 
     <% elsif @potential_match.instance_of? Event %>
       <h4 class="font-bold text-2xl mb-2" > <%= @potential_match.title %> </h4>
@@ -113,6 +110,10 @@
         <% end%>
       </div>
     <% end%>
+  <div class="flex mx-3 items-stretch justify-between sticky bottom-5 text-3xl">
+    <%= button_to  'Interested 👍', swipes_path(:interested => true, :class => @potential_match.class.name, :profile_id => @potential_match.id), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
+    <%= button_to  'Not interested 👎', swipes_path(:interested => false, :class => @potential_match.class.name, :profile_id => @potential_match.id), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
+  </div>
 
   <% else %>
     <h1 class="font-bold text-4xl">You've run out of profiles in your area! Try again later</h1>
