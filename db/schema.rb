@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_30_185916) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_03_175240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -161,9 +161,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_185916) do
 
   create_table "swipes", force: :cascade do |t|
     t.bigint "profile_id", null: false
-    t.integer "swiped_id", null: false
+    t.bigint "event_id"
+    t.bigint "collective_id"
+    t.integer "swiped_id"
     t.boolean "interested", null: false
     t.datetime "swipe_time", null: false
+    t.index ["collective_id"], name: "index_swipes_on_collective_id"
+    t.index ["event_id"], name: "index_swipes_on_event_id"
     t.index ["profile_id"], name: "index_swipes_on_profile_id"
   end
 
@@ -199,5 +203,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_185916) do
   add_foreign_key "collectives_profiles", "profiles"
   add_foreign_key "events", "profiles"
   add_foreign_key "friends", "profiles"
+  add_foreign_key "swipes", "collectives"
+  add_foreign_key "swipes", "events"
   add_foreign_key "swipes", "profiles"
 end

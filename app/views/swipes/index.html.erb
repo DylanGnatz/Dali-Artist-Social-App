@@ -5,79 +5,114 @@
 </script>
 
 <% if @potential_match %>
-  <h1 class="font-bold text-8xl first-letter:text-rose-500"><%= @potential_match.username %></h1>
+  <% if @potential_match.instance_of? Profile %>
 
-  <br/>
-  
-  <% if not @distance.nan? %>
-    <h4 class="text-xl"> <%=@distance%> miles away!</h4>
-  <%end%>
+    <h1 class="font-bold text-8xl first-letter:text-rose-500"><%= @potential_match.username %></h1>
 
-  <br/>
-
-  <% if @potential_match.profile_photo.attached? %>
-    <image src = "<%=(url_for(@potential_match.profile_photo)) %>" class="h-96 mx-auto rounded-full">
     <br/>
-  <% end%>
 
+    <% if not @distance.nan? %>
+      <h4 class="text-xl"> <%=@distance%> miles away!</h4>
+    <%end%>
 
-  <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-    <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Tags</h3>
     <br/>
-    <div class="flex flex-wrap gap-2">
-        <% @potential_match.tags.each do |tag| %>
-          <span id="badge-dismiss-default" class="inline-flex items-center py-1 px-2 text-sm font-medium text-blue-900 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-900">
-            <%= tag.name %>
-          </span>
+
+    <% if @potential_match.profile_photo.attached? %>
+      <image src = "<%=(url_for(@potential_match.profile_photo)) %>" class="h-96 mx-auto rounded-full">
+      <br/>
+    <% end%>
+
+
+    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+      <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Tags</h3>
+      <br/>
+      <div class="flex flex-wrap gap-2">
+          <% @potential_match.tags.each do |tag| %>
+            <span id="badge-dismiss-default" class="inline-flex items-center py-1 px-2 text-sm font-medium text-blue-900 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-900">
+              <%= tag.name %>
+            </span>
+          <% end%>
+        </div>
+    </div>
+
+    <br/>
+    <div class="flex flex-col items-stretch gap-y-4">
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl">About <%= @potential_match.username %></h3>
+        <br/>
+        <p class="whitespace-pre-wrap"><%= @potential_match.bio %></p>
+      </div>
+
+
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Art</h3>
+        <% @potential_match.artworks.each do |art| %>
+          <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
+            <h4 class="font-bold text-2xl mb-2" > <%= art.title %> </h4>
+            <% if art.art_image.attached? %>
+              <image src = "<%=(url_for(art.art_image)) %>" class="max-h-96 mx-auto mb-1">
+            <% end%>
+            <% if art.link%>
+              <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600 mb-1"%>
+            <% end%>
+            <p class="whitespace-pre-wrap"> <%= art.description %> </p>
+          </li>
         <% end%>
       </div>
-  </div>
-
-  <br/>
-  <div class="flex flex-col items-stretch gap-y-4">
-    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-      <h3 class="font-bold text-4xl">About <%= @potential_match.username %></h3>
-      <br/>
-      <p class="whitespace-pre-wrap"><%= @potential_match.bio %></p>
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Events</h3>
+        <% @potential_match.events.each do |event| %>
+          <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
+            <h4 class="font-bold text-2xl mb-2" > <%= event.title %> </h4>
+            <% if event.date%>
+              <p class="mb-1"> <b>📆 Date:</b> <%= event.date.strftime('%F') %> </p>
+            <% end%>
+            <% if !event.location.blank? %>
+              <p> <b>📍 Location:</b> <%= event.location %> </p>
+            <% end%>
+          </li>
+        <% end%>
+      </div>
     </div>
 
+    <br/>
 
-    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-      <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Art</h3>
-      <% @potential_match.artworks.each do |art| %>
-        <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
-          <h4 class="font-bold text-2xl mb-2" > <%= art.title %> </h4>
-          <% if art.art_image.attached? %>
-            <image src = "<%=(url_for(art.art_image)) %>" class="max-h-96 mx-auto mb-1">
-          <% end%>
-          <% if art.link%>
-            <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600 mb-1"%>
-          <% end%>
-          <p class="whitespace-pre-wrap"> <%= art.description %> </p>
-        </li>
+
+
+    <% elsif @potential_match.instance_of? Event %>
+      <h4 class="font-bold text-2xl mb-2" > <%= @potential_match.title %> </h4>
+      <% if @potential_match.date%>
+        <p class="mb-1"> <b>📆 Date:</b> <%= @potential_match.date.strftime('%F') %> </p>
       <% end%>
-    </div>
-    <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-      <h3 class="font-bold text-4xl"><%= @potential_match.username %>'s Events</h3>
-      <% @potential_match.events.each do |event| %>
-        <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
-          <h4 class="font-bold text-2xl mb-2" > <%= event.title %> </h4>
-          <% if event.date%>
-            <p class="mb-1"> <b>📆 Date:</b> <%= event.date.strftime('%F') %> </p>
-          <% end%>
-          <% if !event.location.blank? %>
-            <p> <b>📍 Location:</b> <%= event.location %> </p>
-          <% end%>
-        </li>
+      <% if @potential_match.location.blank? %>
+        <p> <b>📍 Location:</b> <%= @potential_match.location %> </p>
       <% end%>
-    </div>
-  </div>
+    <% elsif @potential_match.instance_of? Collective %>
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl">About <%= @potential_match.name %></h3>
+        <br/>
+        <p class="whitespace-pre-wrap"><%= @potential_match.bio %></p>
+      </div>
 
-  <br/>
-
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+        <h3 class="font-bold text-4xl"><%= @potential_match.name %>'s Art</h3>
+        <% @potential_match.collective_artworks.each do |art| %>
+          <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
+            <h4 class="font-bold text-2xl mb-2" > <%= art.title %> </h4>
+            <% if art.art_image.attached? %>
+              <image src = "<%=(url_for(art.art_image)) %>" class="max-h-96 mx-auto mb-1">
+            <% end%>
+            <% if art.link%>
+              <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600 mb-1"%>
+            <% end%>
+            <p class="whitespace-pre-wrap"> <%= art.description %> </p>
+          </li>
+        <% end%>
+      </div>
+    <% end%>
   <div class="flex mx-3 items-stretch justify-between sticky bottom-5 text-3xl">
-    <%= button_to  'Interested 👍', swipes_path(:interested => true, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
-    <%= button_to  'Not interested 👎', swipes_path(:interested => false, :profile_id => @potential_match.id, :username => @potential_match.username), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
+    <%= button_to  'Interested 👍', swipes_path(:interested => true, :class => @potential_match.class.name, :profile_id => @potential_match.id), :method => :post, class: "bg-emerald-400 hover:bg-emerald-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
+    <%= button_to  'Not interested 👎', swipes_path(:interested => false, :class => @potential_match.class.name, :profile_id => @potential_match.id), :method => :post, class: "bg-red-400 hover:bg-red-500 font-bold py-4 px-6 rounded text-center focus:outline-none focus:shadow-outline" %>
   </div>
 
   <% else %>
