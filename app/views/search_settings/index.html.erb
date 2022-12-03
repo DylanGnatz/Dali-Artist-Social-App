@@ -2,7 +2,7 @@
   <h1 class="font-bold text-8xl first-letter:text-rose-500">Search Settings for <%= @profile.username %></h1>
 
   <br/>
-  <%= form_with url: "/edit", method: :get do |form| %>
+  <%= form_with url: "/search_settings/update", method: :put do |form| %>
     <h4 class="text-xl"> Search Radius (miles)</h4>
     <%= form.number_field :search_radius, in: 10.0..200.0, step: 5.0, value: @search_setting.search_radius %>
     <h4 class="text-xl"> Restrict search to users of the same gender identity?</h4>
