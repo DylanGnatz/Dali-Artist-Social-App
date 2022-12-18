@@ -1,39 +1,40 @@
-<h1 class="font-bold text-8xl"><%= @collective.name %></h1>
+<h1 class="font-bold text-8xl first-letter:text-rose-500"><%= @collective.name %></h1>
 <br/>
 <% if @collective.main_photo.attached? %>
   <image src = "<%=(url_for(@collective.main_photo)) %>" class="h-96 mx-auto rounded-full">
   <br/>
 <% end%>
-<br/>
-<%= button_to  'Chat', chat_path(@collective.chat.id), :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline", :id => 'collective_chat' %>
-<%= button_to  'Add Artwork', new_collective_artworks_path(@collective.id), :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline", :id => 'new_collective_artwork' %>
-<%= button_to  'Edit Collective', edit_collective_path(@collective.id), :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline", :id => 'edit_collective' %>
-<br/>
-
-<div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-  <h3 class="font-bold text-4xl">About <%= @collective.name %></h3>
-  <br/>
-  <p class="whitespace-pre-wrap"><%= @collective.bio %></p>
+<div class="flex py-3 gap-3">
+  <%= button_to  'Chat', chat_path(@collective.chat.id), :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline", :id => 'collective_chat' %>
+  <%= button_to  'Add Artwork', new_collective_artworks_path(@collective.id), :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline", :id => 'new_collective_artwork' %>
+  <%= button_to  'Edit Collective', edit_collective_path(@collective.id), :method => :get, class: "bg-sky-400 hover:bg-sky-500 text-sky-900 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline", :id => 'edit_collective' %>
 </div>
 
-<div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
-  <h3 class="font-bold text-4xl"><%= @collective.name %>'s Art</h3>
-  <% @collective.collective_artworks.each do |art| %>
-    <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
-      <h4 class="font-bold text-2xl mb-2" > <%= art.title %> </h4>
-      <% if art.art_image.attached? %>
-        <image src = "<%=(url_for(art.art_image)) %>" class="max-h-96 mx-auto mb-1">
-      <% end%>
-      <% if art.link%>
-        <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600 mb-1"%>
-      <% end%>
-      <p class="whitespace-pre-wrap"> <%= art.description %> </p>
-    </li>
-  <% end%>
-</div>
-<br>
+<div class="flex flex-col items-stretch gap-y-1">
+  <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+    <h3 class="font-bold text-4xl">About <%= @collective.name %></h3>
+    <br/>
+    <p class="whitespace-pre-wrap"><%= @collective.bio %></p>
+  </div>
 
-<h3 class="font-bold text-4xl mb-3"> Members </h1>
+  <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100">
+    <h3 class="font-bold text-4xl"><%= @collective.name %>'s Art</h3>
+    <% @collective.collective_artworks.each do |art| %>
+      <li class="list-none bg-rose-100 rounded mt-5 p-3 border-2 border-rose-700">
+        <h4 class="font-bold text-2xl mb-2" > <%= art.title %> </h4>
+        <% if art.art_image.attached? %>
+          <image src = "<%=(url_for(art.art_image)) %>" class="max-h-96 mx-auto mb-1">
+        <% end%>
+        <% if art.link%>
+          <%= link_to nil, art.link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600 mb-1"%>
+        <% end%>
+        <p class="whitespace-pre-wrap"> <%= art.description %> </p>
+      </li>
+    <% end%>
+  </div>
+</div>
+
+<h3 class="font-bold text-4xl my-3"> Members </h1>
 <div class="flex flex-col items-stretch gap-y-1">
   <% @collective.profiles.each do |profile| %>
 
