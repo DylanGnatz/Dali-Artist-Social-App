@@ -20,12 +20,14 @@ describe SwipesController do
 
   describe 'post create' do
     it 'creates a new swipe record' do
-      expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+      expect(Profile).to receive(:find_by).exactly(3).times.with(user_id: @user.id).and_return(@profile1)
 
       @swipe = Swipe.create(profile_id: @profile1.id, swiped_id: @profile2.id, interested: true, swipe_time: Time.now())
-      expect(Swipe).to receive(:create!).and_return(@swipe)
+      expect(Swipe).to receive(:create!).exactly(3).times.and_return(@swipe)
 
-      post :create, params: { profile_id: @profile1.id, interested: true }
+      post :create, params: { profile_id: @profile1.id, interested: true, class: "Profile" }
+      post :create, params: { profile_id: @profile1.id, interested: true, class: "Event" }
+      post :create, params: { profile_id: @profile1.id, interested: true, class: "Collective" }
     end
   end
   describe "check match" do
