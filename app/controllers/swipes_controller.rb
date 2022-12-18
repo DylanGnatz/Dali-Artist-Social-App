@@ -33,7 +33,7 @@ class SwipesController < ApplicationController
 
 
     if @check_match
-      username = Profile.where(id: swiped_id).pluck(:username)
+      username = Profile.where(id: swiped_id).pluck(:username).first
       flash[:notice] = "You just matched with '#{username}'!"
     end
     redirect_to swipes_path
