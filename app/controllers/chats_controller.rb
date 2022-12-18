@@ -6,7 +6,10 @@ class ChatsController < ApplicationController
         @chats = []
         @collective_chats = []
         profile.chats.each do |chat|
-            @chats.push({ name: (chat.profiles - [profile])[0].username, id: chat.id })
+            friend_profile = (chat.profiles - [profile])[0]
+            if friend_profile != nil
+                @chats.push({ name: friend_profile.username, id: chat.id })
+            end
         end
 
         profile.collectives.each do |collective|
@@ -17,19 +20,18 @@ class ChatsController < ApplicationController
     def show
         @profile = Profile.find_by(user_id: current_user.id)
         @isCollective = false
-        if @profile.chats.find_by_id(params[:id]) != nil
-            @chat = @profile.chats.find_by_id(params[:id])
-            @name = (@chat.profiles - [@profile])[0].username
-        elsif
-            @collective = @profile.collectives.find_by_chat_id(params[:id])
+        @collective = @profile.collectives.find_by_chat_id(params[:id])
+        if @collective != nil
             @chat = @collective.chat
             @name = @collective.name
             @isCollective = true
-        end
-
-        if @chat == nil
-            redirect_to chats_path
-            return
+        else
+            @chat = @profile.chats.find_by_id(params[:id])
+            if @chat == nil
+                redirect_to chats_path
+                return
+            end
+            @name = (@chat.profiles - [@profile])[0].username
         end
 
         @messages = []
@@ -60,7 +62,7 @@ class ChatsController < ApplicationController
     def destroy
         chat = Chat.find(params[:id])
         chat.destroy
-        flash[:notice] = "Chat was successfully deleted."
+        flash[:notice] = "Chat was successfully deleted!"
         redirect_to chats_path
     end
 end

@@ -10,9 +10,8 @@ class CollectivesProfilesController < ApplicationController
         end
         params[:members].keys.each do |memberId|
             CollectivesProfile.create!(collective_id: collective.id, profile_id: memberId)
-            ChatsProfile.create!(chat_id: collective.chat.id, profile_id: memberId)
         end
-        flash[:notice] = "Members were successfully added."
+        flash[:notice] = "Members were successfully added!"
         redirect_to edit_collective_path(params[:id])
     end
 
@@ -23,11 +22,9 @@ class CollectivesProfilesController < ApplicationController
             redirect_to collectives_path
             return
         end
-        chatP = ChatsProfile.where('chat_id = ? and profile_id = ?', collective.chat.id, params[:memberId])
         collectiveP = CollectivesProfile.where('collective_id = ? and profile_id = ?', params[:id], params[:memberId])
         collectiveP[0].destroy
-        chatP[0].destroy
-        flash[:notice] = "Member was successfully removed."
+        flash[:notice] = "Member was successfully removed!"
         redirect_to edit_collective_path(params[:id])
     end
 end

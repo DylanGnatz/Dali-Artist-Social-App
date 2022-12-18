@@ -54,3 +54,8 @@ end
 When /^I select checkbox "(.*?)"$/ do |cb|
   check(cb)
 end
+
+And(/^I attach "(.*?)" with "(.*?)"$/) do |field, file|
+  page.attach_file field, File.join(Rails.root, file)
+end
+
