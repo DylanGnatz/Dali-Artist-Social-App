@@ -81,4 +81,4 @@ This account will showcase most features.
 
 https://github.com/DylanGnatz/Dali-Artist-Social-App
 
-The git branches `proj-iter-1` and `proj-iter-2` contain only the code commited before the first and second deadline respectively.
+The git branches `proj-iter-1`, `proj-iter-2` and `proj-launch` contain the code commited before the first, second and last deadline respectively.
