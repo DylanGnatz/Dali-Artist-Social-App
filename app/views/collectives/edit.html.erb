@@ -1,8 +1,8 @@
 <div class="flex flex-col gap-y-3">
-    <h1 class="font-bold text-8xl"> Edit Collective </h1>
+    <h1 class="font-bold text-8xl first-letter:text-rose-500"> Edit Collective </h1>
 
 
-    <h3 class="font-bold text-6xl"><%= @collective.name %></h3>
+    <h3 class="font-bold text-6xl first-letter:text-rose-500"><%= @collective.name %></h3>
 
     <%= button_to 'Delete', collective_path(@collective), method: :delete, class:"bg-red-400 hover:bg-red-500 font-bold py-2 px-4 rounded text-center focus:outline-none focus:shadow-outline", :id => 'delete_collective'%>
 
