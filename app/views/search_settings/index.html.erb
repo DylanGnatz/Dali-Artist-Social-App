@@ -1,31 +1,48 @@
 <% if @profile %>
-  <h1 class="font-bold text-8xl first-letter:text-rose-500">Search Settings for <%= @profile.username %></h1>
+  <h1 class="font-bold text-8xl first-letter:text-rose-500">Search settings</h1>
 
   <br/>
   <%= form_with url: "/search_settings/update", method: :put do |form| %>
-    <h4 class="text-xl"> Search Radius (miles)</h4>
-    <%= form.number_field :search_radius, in: 10.0..200.0, step: 5.0, value: @search_setting.search_radius %>
-    <h4 class="text-xl"> Restrict search to users of the same gender identity?</h4>
-    <%= form.radio_button :gender_restrict, true, checked: @search_setting.gender_restrict %>
-    <%= form.label :gender_restrict, "Yes" %>
-    <%= form.radio_button :gender_restrict, false, checked: @search_setting.gender_restrict == false%>
-    <%= form.label :gender_restrict, "No" %>
 
-    <h4 class="text-xl"> Restrict search to users with the same profile tags?</h4>
-    <%= form.radio_button :tag_restrict, true, checked: @search_setting.tag_restrict %>
-    <%= form.label :tag_restrict, "Yes" %>
-    <%= form.radio_button :tag_restrict, false, checked: @search_setting.tag_restrict == false %>
-    <%= form.label :tag_restrict, "No" %>
+    <div class="flex flex-col items-stretch gap-y-3">
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+        <h4 class="text-2xl font-bold pb-3"> Search Radius (miles)</h4>
+        <%= form.number_field :search_radius, in: 10.0..200.0, step: 5.0, value: @search_setting.search_radius, class: "bg-blue-100 text-xl text-blue-900 rounded w-48" %>
+      </div>
 
-    <h4 class="text-xl"> Which would you like to appear in your search?</h4>
-    <%= form.check_box :show_profiles, checked: @search_setting.show_profiles%>
-    <%= form.label :show_profiles, "Profiles" %>
-    <%= form.check_box :show_events, checked: @search_setting.show_events %>
-    <%= form.label :show_events, "Events" %>
-    <%= form.check_box :show_collectives, checked: @search_setting.show_collectives %>
-    <%= form.label :show_collectives, "Collectives" %>
-    <br>
-    <%= submit_tag 'Save', class:"bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+        <h4 class="text-2xl font-bold pb-3"> Restrict search to users of the same gender identity?</h4>
+        <div class="flex items-center" >
+          <%= form.radio_button :gender_restrict, true, checked: @search_setting.gender_restrict, class: "bg-blue-100 text-blue-500 mr-3" %>
+          <%= form.label :gender_restrict, "Yes", class: "mr-5 text-xl" %>
+          <%= form.radio_button :gender_restrict, false, checked: @search_setting.gender_restrict == false, class: "bg-blue-100 text-blue-500 mr-3"%>
+          <%= form.label :gender_restrict, "No" %>
+        </div>
+      </div>
+
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+        <h4 class="text-2xl font-bold pb-3"> Restrict search to users with the same profile tags?</h4>
+        <div class="flex items-center" >
+          <%= form.radio_button :tag_restrict, true, checked: @search_setting.tag_restrict, class: "bg-blue-100 text-blue-500 mr-3" %>
+          <%= form.label :tag_restrict, "Yes", class: "mr-5 text-xl" %>
+          <%= form.radio_button :tag_restrict, false, checked: @search_setting.tag_restrict == false, class: "bg-blue-100 text-blue-500 mr-3" %>
+          <%= form.label :tag_restrict, "No", class: "mr-5 text-xl" %>
+        </div>
+      </div>
+
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+        <h4 class="text-2xl font-bold pb-3"> Which would you like to appear in your search?</h4>
+        <div class="flex items-center" >
+          <%= form.check_box :show_profiles, checked: @search_setting.show_profiles, class: "bg-blue-100 text-blue-500 rounded mr-3"%>
+          <%= form.label :show_profiles, "Profiles", class: "mr-5 text-xl" %>
+          <%= form.check_box :show_events, checked: @search_setting.show_events, class: "bg-blue-100 text-blue-500 rounded mr-3" %>
+          <%= form.label :show_events, "Events", class: "mr-5 text-xl" %>
+          <%= form.check_box :show_collectives, checked: @search_setting.show_collectives, class: "bg-blue-100 text-blue-500 rounded mr-3" %>
+          <%= form.label :show_collectives, "Collectives", class: "mr-5 text-xl" %>
+        </div>
+      </div>
+    </div>
+    <%= submit_tag 'Save', class:"bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mr-6 mt-3 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
   <% end %>
 <% end %>
 
