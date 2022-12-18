@@ -85,10 +85,17 @@ describe CollectivesController do
         expect(response).to redirect_to(new_collective_path)
     end
 
+    it 'redirects to new collective path if no collective name given' do
+      expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+
+      post :create, params: { collective: { name: 'GG', bio: '' } }
+      expect(response).to redirect_to(new_collective_path)
+    end 
+
     it 'redirects to new collective path if no members given' do
       expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
 
-      post :create, params: { collective: { name: 'GG Boys' } }
+      post :create, params: { collective: { name: 'GG Boys', bio: 'boysss' } }
       expect(response).to redirect_to(new_collective_path)
     end
 
@@ -98,15 +105,12 @@ describe CollectivesController do
       chat4 = create(:chat, profiles: profiles)
       collective4 = create(:collective, profiles: profiles, chat:chat4)
       expect(Chat).to receive(:create!).and_return(chat4)
-      expect(Collective).to receive(:create!).with(name: 'GG Boys', chat_id: chat4.id).and_return(collective4)
-      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile1.id).ordered
-      expect(ChatsProfile).to receive(:create!).with(chat_id: chat4.id, profile_id: @profile1.id).ordered
-      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile2.id.to_s).ordered
-      expect(ChatsProfile).to receive(:create!).with(chat_id: chat4.id, profile_id: @profile2.id.to_s).ordered
-      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile4.id.to_s).ordered
-      expect(ChatsProfile).to receive(:create!).with(chat_id: chat4.id, profile_id: @profile4.id.to_s).ordered
-      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile5.id.to_s).ordered
-      expect(ChatsProfile).to receive(:create!).with(chat_id: chat4.id, profile_id: @profile5.id.to_s).ordered
+      expect(Collective).to receive(:create!).with(strong_params(name: 'GG Boys', chat_id: chat4.id)).and_return(collective4)
+      
+      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile1.id)
+      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile2.id.to_s)
+      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile4.id.to_s)
+      expect(CollectivesProfile).to receive(:create!).with(collective_id: collective4.id, profile_id: @profile5.id.to_s)
 
       members = {}
       members[@profile2.id.to_i] = 1
@@ -130,6 +134,71 @@ describe CollectivesController do
 
       get :new
       expect(response).to render_template('new')
+    end
+  end
+
+  describe 'get edit' do
+    it 'shows the edit page' do
+      expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+
+      get :edit, params: { id: @collective1.id }
+      expect(response).to be_successful
+    end
+    it 'selects the edit template to render' do
+      expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+
+      get :edit, params: { id: @collective1.id }
+      expect(response).to render_template('edit')
+    end
+    it 'redirects to collectives path if not a valid collective id' do
+      expect(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+      allow(Collective).to receive(:find).with(@collective3.id.to_s).and_return(nil)
+
+      get :edit, params: { id: @collective3.id }
+      expect(response).to redirect_to(collectives_path)
+    end
+    it 'makes the results available to that template' do
+      allow(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+      allow(Collective).to receive(:find).with(@collective1.id.to_s).and_return(@collective1)
+
+      get :edit, params: { id: @collective1.id }
+      expect(assigns(:collective)).to eq(@collective1)
+    end 
+  end
+
+  describe 'put' do
+    it 'updates the collective' do
+      allow(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+      allow(Collective).to receive(:find_by_id).with(@collective1.id.to_s).and_return(@collective1)
+      allow(Collective).to receive(:update).with(strong_params(name: 'NT Boys', bio: 'Nice try'))
+
+      put :update, params: { id: @collective1.id, collective: { name: 'NT Boys', bio: 'Nice try' }}
+      expect(response).to redirect_to(collectives_path)
+    end
+    it 'redirects when given ivalid collective' do
+      allow(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+      allow(Collective).to receive(:find_by_id).with("5").and_return(nil)
+      allow(Collective).to receive(:update).with(strong_params(name: 'NT Boys', bio: 'Nice try'))
+
+      put :update, params: { id: "5", collective: { name: 'NT Boys', bio: 'Nice try' }}
+      expect(response).to redirect_to(collectives_path)
+    end
+  end
+
+  describe 'delete' do
+    it 'collective' do
+      allow(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+      allow(Collective).to receive(:find_by_id).with(@collective1.id.to_s).and_return(@collective1)
+      allow(Collective).to receive(:destroy)
+      delete :destroy, params: { id: @collective1.id}
+      expect(response).to redirect_to(collectives_path)
+    end
+    it 'redirects when wrong collective id given' do
+      allow(Profile).to receive(:find_by).with(user_id: @user.id).and_return(@profile1)
+      allow(Collective).to receive(:find_by_id).with("5").and_return(nil)
+
+      delete :destroy, params: { id: "5" }
+      expect(response).to redirect_to(collectives_path)
     end
   end
 end

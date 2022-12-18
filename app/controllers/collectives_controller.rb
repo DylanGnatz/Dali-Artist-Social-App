@@ -55,7 +55,7 @@ class CollectivesController < ApplicationController
         end
         collective.update!(collective_params)
         collective.main_photo.attach(params[:main_photo])
-        flash[:notice] = "Collective was successfully updated."
+        flash[:notice] = "Collective was successfully updated!"
         redirect_to collectives_path
     end
 
@@ -68,7 +68,7 @@ class CollectivesController < ApplicationController
         end
         collective.destroy
         collective.chat.destroy
-        flash[:notice] = "Collective was successfully deleted."
+        flash[:notice] = "Collective was successfully deleted!"
         redirect_to collectives_path
     end
 
@@ -84,7 +84,7 @@ class CollectivesController < ApplicationController
     private
 
     def collective_params
-        params.require(:collective).permit(:bio, :name, :date_of_birth, :profile_photo)
+        params.require(:collective).permit(:bio, :name)
     end
 
 end

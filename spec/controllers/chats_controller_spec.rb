@@ -115,4 +115,13 @@ describe ChatsController do
         end
         
     end
+
+    describe 'delete' do
+        it 'deletes the chat' do
+            expect(Chat).to receive(:find).with(@chat1.id.to_s).and_return(@chat1)
+            allow(Chat).to receive(:destroy)
+
+            delete :destroy, params: { id: @chat1.id }
+        end
+    end
 end

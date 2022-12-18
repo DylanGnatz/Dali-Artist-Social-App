@@ -71,3 +71,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+def strong_params(wimpy_params)
+  ActionController::Parameters.new(wimpy_params).permit!
+end
