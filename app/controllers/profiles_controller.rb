@@ -45,6 +45,11 @@ class ProfilesController < ApplicationController
         @feed_items.push({type: :event, event: event, time: event.created_at})
       end
     end
+    profile.collectives.each do |collective|
+      collective.collective_artworks.each do |artwork|
+        @feed_items.push({type: :collective_artwork, artwork: artwork, time: artwork.created_at})
+      end
+    end
     @feed_items.sort_by! { |item| item[:time]}.reverse!
   end
 

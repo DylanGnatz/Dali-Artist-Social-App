@@ -21,6 +21,23 @@
         </div>
       </div>
     <% end %>
+    <% if feed_item[:type] == :collective_artwork %>
+      <div class="p-3 border-2 border-amber-700 rounded-lg bg-orange-100 flex flex-col">
+        <div class="font-bold text-gray-500">
+            <%= feed_item[:artwork].collective.name %> added new artwork
+        </div>
+        <div>
+          <h4 class="font-bold text-4xl mb-2" > <%= feed_item[:artwork].title %> </h4>
+          <% if feed_item[:artwork].art_image.attached?%>
+            <image src = "<%=(url_for(feed_item[:artwork].art_image)) %>" class="max-h-96 mx-auto mb-1">
+          <% end%>
+          <% if feed_item[:artwork].link%>
+            <%= link_to nil, feed_item[:artwork].link, target: :_blank, class: "no-underline hover:underline text-blue-600 hover:text-blue-800 visited:text-purple-600 mb-1"%>
+          <% end%>
+          <p class="whitespace-pre-wrap"> <%= feed_item[:artwork].description %> </p>
+        </div>
+      </div>
+    <% end %>
     <% if feed_item[:type] == :event %>
       <div class="p-3 border-2 border-sky-700 rounded-lg bg-sky-100 flex flex-col">
         <div class="font-bold text-gray-500">
